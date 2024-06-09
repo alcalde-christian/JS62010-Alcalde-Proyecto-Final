@@ -1,0 +1,5 @@
+Primera entrega:
+- Creación de variables
+- Ciclos
+- Funciones
+- Arrays

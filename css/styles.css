@@ -89,9 +89,9 @@ main .info-modal .info-container {
   flex-direction: column;
   position: relative;
   top: 150px;
-  margin: 0 25%;
   animation-name: animatetop;
   animation-duration: 0.4s;
+  margin: 0 25%;
 }
 main .info-modal .info-container .info-header {
   margin: 0 25%;
@@ -154,9 +154,9 @@ main .cart-modal .cart-container {
   flex-direction: column;
   position: relative;
   top: 150px;
-  margin: 0 26%;
   animation-name: animatetop;
   animation-duration: 0.4s;
+  margin: 0 26%;
 }
 main .cart-modal .cart-container .cart-header {
   height: 40px;

@@ -1,4 +1,5 @@
 @import "../abstracts/variables";
+@import "../abstracts/mixins";
 @import "../animations/keyframes";
 
 
@@ -6,40 +7,21 @@ main {
     background-color: $back-color;
 
     .info-modal {
-        z-index: 1;
-        position: fixed;
-        display: none;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 100%;
-        background-color: rgba(0,0,0,0.4);
+        @include modal-styles;
 
         .info-container {
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            top: 150px;
+            @include modal-container-styles;
             margin: 0 25%;
-            animation-name: animatetop;
-            animation-duration: 0.4s;
 
             .info-header {
                 margin: 0 25%;
-                height: 40px;
-                background-image: url("../img/bg.png");
-                border-top-left-radius: 15px;
-                border-top-right-radius: 15px;
+                @include modal-header-styles;
     
                 .close-button {
-                    float: right;
-                    margin-right: 10px;
-                    font-size: 25px;
-                    font-weight: bold;
+                    @include close-button-styles;
     
                     &:hover {
-                        color: $main-color-light;
-                        cursor: pointer;
+                        @include close-button-hover;
                     }
                 }
             }
@@ -52,16 +34,14 @@ main {
                 background-color: $back-color;
     
                 .info-body-icons {
-                    display: flex;
-                    flex-direction: column;
+                    @include flex-col;
                     align-items: center;
                     width: 30%;
                     gap: 15px;
                 }
     
                 .info-body-data {
-                    display: flex;
-                    flex-direction: column;
+                    @include flex-col;
                     align-items: start;
                     width: 70%;
                     gap: 15px;
@@ -71,48 +51,26 @@ main {
             .info-footer {
                 margin: 0 25%;
                 width: 50%;
-                height: 10px;
-                background-image: url("../img/bg.png");
-                border-bottom-left-radius: 15px;
-                border-bottom-right-radius: 15px;
+                @include modal-footer-styles;
             }
         }
     }
 
     .cart-modal {
-        z-index: 1;
-        position: fixed;
-        display: none;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 100%;
-        background-color: rgba(0,0,0,0.4);
+        @include modal-styles;
 
         .cart-container {
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            top: 150px;
+            @include modal-container-styles;
             margin: 0 26%;
-            animation-name: animatetop;
-            animation-duration: 0.4s;
 
             .cart-header {
-                height: 40px;
-                background-image: url("../img/bg.png");
-                border-top-left-radius: 15px;
-                border-top-right-radius: 15px;
+                @include modal-header-styles;
 
                 .close-button {
-                    float: right;
-                    margin-right: 10px;
-                    font-size: 25px;
-                    font-weight: bold;
+                    @include close-button-styles;
 
                     &:hover {
-                        color: $main-color-light;
-                        cursor: pointer;
+                        @include close-button-hover;
                     }
                 }
             }
@@ -143,16 +101,10 @@ main {
                         width: 15%;
                         margin: 15px;
                         padding: 5px;
-                        font-weight: bold;
-                        color: $main-color;
-                        border: 1px solid $main-color;
-                        border-radius: 5px;
-                        background-color: $back-card;
+                        @include button-styles;
 
                         &:hover {
-                            background-color: $main-color-light;
-                            transition: background-color ease 0.5s;
-                            cursor: pointer;
+                            @include button-styles-hover;
                         }
                     }
                 }
@@ -161,16 +113,10 @@ main {
                     width: 40%;
                     margin: 0 30%;
                     padding: 5px;
-                    font-weight: bold;
-                    color: $main-color;
-                    border: 1px solid $main-color;
-                    border-radius: 5px;
-                    background-color: $back-card;
+                    @include button-styles;
 
                     &:hover {
-                        background-color: $main-color-light;
-                        transition: background-color ease 0.5s;
-                        cursor: pointer;
+                        @include button-styles-hover;
                     }
                 }
 
@@ -181,10 +127,7 @@ main {
             }
 
             .cart-footer {
-                height: 10px;
-                background-image: url("../img/bg.png");
-                border-bottom-left-radius: 15px;
-                border-bottom-right-radius: 15px;
+                @include modal-footer-styles;
             }
         }
     }
@@ -200,8 +143,7 @@ main {
 
         .phone-box {
             background-color: $back-card;
-            display: flex;
-            flex-direction: column;
+            @include flex-col;
             text-align: center;
             width: 250px;
             border: 2px solid $main-color;
@@ -229,23 +171,16 @@ main {
             }
 
             .buttons-container {
-                display: flex;
-                flex-direction: column;
+                @include flex-col;
                 margin: 15px 0;
 
                 input {
                     margin: 5px 15%;
                     padding: 5px;
-                    font-weight: bold;
-                    color: $main-color;
-                    border: 1px solid $main-color;
-                    border-radius: 5px;
-                    background-color: $back-card;
+                    @include button-styles;
     
                     &:hover {
-                        background-color: $main-color-light;
-                        transition: background-color ease 0.5s;
-                        cursor: pointer;
+                        @include button-styles-hover;
                     }
                 }
             }

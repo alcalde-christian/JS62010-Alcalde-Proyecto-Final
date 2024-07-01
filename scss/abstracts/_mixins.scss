@@ -1,0 +1,66 @@
+@import "../abstracts/variables";
+
+@mixin button-styles {
+    font-weight: bold;
+    color: $main-color;
+    border: 1px solid $main-color;
+    border-radius: 5px;
+    background-color: $back-card;
+}
+
+@mixin button-styles-hover {
+    background-color: $main-color-light;
+    transition: background-color ease 0.5s;
+    cursor: pointer;
+}
+
+@mixin close-button-styles {
+    float: right;
+    margin-right: 10px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+@mixin close-button-hover {
+    color: $main-color-light;
+    cursor: pointer;
+}
+
+@mixin modal-styles {
+    z-index: 1;
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.4);
+}
+
+@mixin modal-container-styles {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: 150px;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+}
+
+@mixin modal-header-styles {
+    height: 40px;
+    background-image: url("../img/bg.png");
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+@mixin modal-footer-styles {
+    height: 10px;
+    background-image: url("../img/bg.png");
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+@mixin flex-col {
+    display: flex;
+    flex-direction: column;
+}

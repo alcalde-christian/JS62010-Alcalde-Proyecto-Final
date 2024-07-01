@@ -1,0 +1,218 @@
+/////////////////////////////////////////////////////////////////////////////////////////
+// Creación de variables globales
+/////////////////////////////////////////////////////////////////////////////////////////
+
+let totalCost = 0
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+// Creación de arrays
+/////////////////////////////////////////////////////////////////////////////////////////
+
+// Arrays para teléfonos
+
+const phones = ["iPhone 14 Pro Max", "Samsung s24 Ultra", "Samsung s22", "Samsung a53", "Samsung a33", "Motorola One Vision"]
+
+const cart = []
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+// Declaración de funciones
+/////////////////////////////////////////////////////////////////////////////////////////
+
+// Función de bienvenida que registra los datos del cliente y devuelve un mensaje
+
+const welcome = (fullName, contactMail, contactPhone) => {
+    // Ciclo WHILE para evitar ingresos erróneos de información
+    while (!fullName || !contactMail || !contactPhone) {
+        alert ("Alguno de los datos solicitados es incorrecto")
+
+        fullName = prompt ("Ingrese su nombre completo")
+        contactMail = prompt ("Ingrese su e-mail de contacto")
+        contactPhone = prompt ("Ingrese el número de teléfono donde desea ser contactado")
+    }
+    
+    alert ("¡Bienvenido " + fullName + "!\nEsperamos tenga una agradable experiencia de compra.\nSus datos de contacto son:\nMail: " + contactMail + "\nTeléfono: " + contactPhone)
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+// Función que muestra al cliente el listado de teléfonos disponibles y permite elegir uno de ellos según su número de índice
+
+const showPhones = () => {
+    let optionsText = "Ingrese el número de índice del teléfono que desea agregar a su carrito:\n"
+
+    // Ciclo FOR-OF para recopilar la información del array
+    for (const phone of phones) {
+        optionsText = optionsText + "\n" +(phones.indexOf(phone) + 1) + ". " + phone
+        console.log (phones.indexOf(phone) + 1)
+    }
+    // La información se almacena en una variable que será mostrada por prompt
+    let phoneSelectedIndex = prompt (optionsText)
+
+    // Ciclo WHILE para evitar ingresos erróneos de información
+    while (isNaN(phoneSelectedIndex) || phoneSelectedIndex > phones.length || phoneSelectedIndex <= 0){
+        alert ("El número ingresado no es válido")
+        phoneSelectedIndex = prompt (optionsText)
+    }
+
+    // Devuelve el valor ingresado en el prompt anterior
+    return phoneSelectedIndex
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+// Función que le muestra al usuario las características del teléfono seleccionado y le permite elegir agregarlo al carrito o seguir mirando
+
+const showInfoAndConfirm = () => {
+    let yesOrNo
+
+    // Confirm para mostrar la información y elegir si se desea agregar al carrito
+    if (phoneSelected == 1) {
+        yesOrNo = confirm ("El teléfono seleccionado es:\n\n📱 " + phones[phoneSelected - 1] + "\n\n🧠 Microprocesador: Apple A16 Bionic\n💾 Memoria RAM: 6Gb\n🏷️ Precio: $1.500.000\n\n¿Desea agregarlo al carrito?")
+    } else if (phoneSelected == 2) {
+        yesOrNo = confirm ("El teléfono seleccionado es:\n\n📱 " + phones[phoneSelected - 1] + "\n\n🧠 Microprocesador: Qualcomm Snapdragon 8 Gen 3\n💾 Memoria RAM: 12Gb\n🏷️ Precio: $2.200.000\n\n¿Desea agregarlo al carrito?")
+    } else if (phoneSelected == 3) {
+        yesOrNo = confirm ("El teléfono seleccionado es:\n\n📱 " + phones[phoneSelected - 1] + "\n\n🧠 Microprocesador: Qualcomm Snapdragon 8 Gen 1\n💾 Memoria RAM: 8Gb\n🏷️ Precio: $850.000\n\n¿Desea agregarlo al carrito?")
+    } else if (phoneSelected == 4) {
+        yesOrNo = confirm ("El teléfono seleccionado es:\n\n📱 " + phones[phoneSelected - 1] + "\n\n🧠 Microprocesador: Exynos 1280\n💾 Memoria RAM: 8Gb\n🏷️ Precio: $750.000\n\n¿Desea agregarlo al carrito?")
+    } else if (phoneSelected == 5) {
+        yesOrNo = confirm ("El teléfono seleccionado es:\n\n📱 " + phones[phoneSelected - 1] + "\n\n🧠 Microprocesador: Exynos 1280\n💾 Memoria RAM: 6Gb\n🏷️ Precio: $400.000\n\n¿Desea agregarlo al carrito?")
+    } else if (phoneSelected == 6) {
+        yesOrNo = confirm ("El teléfono seleccionado es:\n\n📱 " + phones[phoneSelected - 1] + "\n\n🧠 Microprocesador: Exynos 9609 Octa-core\n💾 Memoria RAM: 4Gb\n🏷️ Precio: $450.000\n\n¿Desea agregarlo al carrito?")
+    }
+    
+    // Condicional para determinar si se avanza con la compra o si se regresa al listado
+    if (yesOrNo) {
+        cart.push (phones[phoneSelected - 1])
+        console.log (cart)
+        return yesOrNo
+    } else {
+        phoneSelected = showPhones()
+        return showInfoAndConfirm()
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+// Función que muestra opciones al usuario
+
+const showOptions = (selectedOption) => {
+    // Ciclo WHILE para evitar ingresos erróneos de información
+    while (isNaN(selectedOption) || selectedOption >= 4 || selectedOption <= 0) {
+        alert ("El número ingresado no es válido")
+        showOptions (prompt("Seleccione qué desea hacer a continuación:\n\n1. Seguir comprando\n2. Eliminar un artículo del carrito\n3. Finalizar compra"))
+    }
+
+    // Algoritmo para dirigir al usuario al menú requerido
+    if (selectedOption == 1) {
+        phoneSelected = showPhones()
+        answer = showInfoAndConfirm()
+        showOptions (prompt("Seleccione qué desea hacer a continuación:\n\n1. Seguir comprando\n2. Eliminar un artículo del carrito\n3. Finalizar compra"))
+    } else if (selectedOption == 2) {
+        displayCartAndDelete()
+    } else if (selectedOption == 3) {
+        calculateTotal()
+    }
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+// Función para mostrar el carrito y borrar elementos
+
+const displayCartAndDelete = () => {
+    // Condicional IF para evitar que continúe ejecutándose el código si no hay elementos en el carrito
+    if (cart.length == 0) {
+        alert ("No hay artículos que eliminar en su carrito")
+        return showOptions (prompt("Seleccione qué desea hacer a continuación:\n\n1. Seguir comprando\n2. Eliminar un artículo del carrito\n3. Finalizar compra"))
+    }
+
+    let displayCartText = "Seleccione el número de elemento que desea eliminar:\n"
+
+    // Ciclo FOR clásico para recopilar la información del array
+    // FOR-OF devolvía el índice equivocado si el elemento dentro del array se repetía
+    for (let i = 0; i <= (cart.length - 1); i++) {
+        displayCartText = displayCartText + "\n" + (i + 1) + ". " + cart[i]
+        console.log (i)
+        console.log (cart[i])
+    }
+
+    // La información se almacena en una variable que será mostrada por prompt
+    let selectedElementIndex = prompt (displayCartText)
+
+    // Condicional IF en caso que el cliente cancele la eliminación de elementos
+    if (selectedElementIndex == null) {
+        return showOptions (prompt("Seleccione qué desea hacer a continuación:\n\n1. Seguir comprando\n2. Eliminar un artículo del carrito\n3. Finalizar compra"))
+    }
+
+    // Ciclo WHILE para evitar ingresos erróneos de información
+    while (isNaN(selectedElementIndex) || selectedElementIndex > cart.length || selectedElementIndex <= 0){
+        alert ("El número ingresado no es válido")
+        selectedElementIndex = prompt (displayCartText)
+    }
+
+    // Método SPLICE para borrar el teléfono según su índice
+    alert ("El teléfono " + cart[(selectedElementIndex) - 1] + " ha sido eliminado")
+    cart.splice ((selectedElementIndex) - 1, 1)
+
+    // ALERT si se ha eliminado el último elemento del carrito
+    if (cart.length == 0) {
+        alert ("El carrito ha quedado vacío")
+    }
+
+    // Luego de eliminar el teléfono seleccionado se regresa al prompt de opciones
+    showOptions (prompt("Seleccione qué desea hacer a continuación:\n\n1. Seguir comprando\n2. Eliminar un artículo del carrito\n3. Finalizar compra"))
+
+    console.log (cart)
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+// Función para sumar el total de la compra una vez se ha decidido finalizar con la misma
+
+const calculateTotal = () => {
+    let calculateTotalText = "Los elementos en su carrito son:\n"
+
+    // Ciclo FOR clásico para listar los elementos del carrito y sumar los valores de c/u
+    for (let i = 0; i < cart.length; i++) {
+        calculateTotalText = calculateTotalText + "\n" + cart[i] + "."
+
+        if (cart[i] == "iPhone 14 Pro Max") {
+            totalCost = totalCost + 1500000
+        } else if (cart[i] == "Samsung s24 Ultra") {
+            totalCost = totalCost + 2200000
+        } else if (cart[i] == "Samsung s22") {
+            totalCost = totalCost + 850000
+        } else if (cart[i] == "Samsung a53") {
+            totalCost = totalCost + 750000
+        } else if (cart[i] == "Samsung a33") {
+            totalCost = totalCost + 400000
+        } else if (cart[i] == "Motorola One Vision") {
+            totalCost = totalCost + 450000
+        }
+    }
+
+    alert (calculateTotalText + "\n\nEl total de su compra es de $" + totalCost)
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+// Llamado a funciones
+/////////////////////////////////////////////////////////////////////////////////////////
+
+// welcome (prompt("Ingrese su nombre completo"), prompt("Ingrese su e-mail de contacto"), prompt("Ingrese el número de teléfono donde desea ser contactado"))
+
+// let phoneSelected = showPhones() 
+console.log (phoneSelected)
+
+// let answer = showInfoAndConfirm()
+console.log (answer)
+
+// showOptions (prompt("Seleccione qué desea hacer a continuación:\n\n1. Seguir comprando\n2. Eliminar un artículo del carrito\n3. Finalizar compra"))
+
+console.log (totalCost)
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////

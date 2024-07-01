@@ -31,67 +31,75 @@
         </div>
     </header>
     <main>
-        <div class="phone-list">
-            <div class="phone-box iphone">
-                <img src="./img/14promax.png" alt="" class="img-iphone">
-                <p class="box-text">
-                    iPhone 14 Pro Max
-                </p>
-                <p class="box-price">
-                    $1.500.000
-                </p>
-                <input type="button" value="Agregar">
+        <div id="info-modal" class="info-modal">
+            <div id="info-container" class="info-container">
+                <div class="info-header">
+                    <span id="close-button" class="close-button">&times;</span>
+                </div>
+                <div class="info-body">
+                    <div class="info-body-icons">
+                        <div>
+                            <i class="fa-solid fa-mobile-screen fa-2xl" style="color: #ae31bf;"></i>
+                        </div>
+                        <div>
+                            <i class="fa-solid fa-display fa-2xl" style="color: #ae31bf;"></i>
+                        </div>
+                        <div>
+                            <i class="fa-solid fa-memory fa-2xl" style="color: #ae31bf;"></i>
+                        </div>
+                        <div>
+                            <i class="fa-solid fa-database fa-2xl" style="color: #ae31bf;"></i>
+                        </div>
+                        <div>
+                            <i class="fa-solid fa-camera fa-2xl" style="color: #ae31bf;"></i>
+                        </div>
+                    </div>
+                    <div class="info-body-data">
+                        <p id="data-name">
+                            Este campo está vacío
+                        </p>
+
+                        <p id="data-screen">
+                            Este campo está vacío
+                        </p>
+
+                        <p id="data-ram">
+                            Este campo está vacío
+                        </p>
+
+                        <p id="data-storage">
+                            Este campo está vacío
+                        </p>
+
+                        <p id="data-camera">
+                            Este campo está vacío
+                        </p>
+                    </div>
+                </div>
+                <div class="info-footer"></div>
             </div>
-            <div class="phone-box s24">
-                <img src="./img/s24ultra.png" alt="" class="img-s24">
-                <p class="box-text">
-                    Samsung s24 Ultra
-                </p>
-                <p class="box-price">
-                    $2.200.000
-                </p>
-                <input type="button" value="Agregar">
+        </div>
+        <div id="cart-modal" class="cart-modal">
+            <div id="cart-container" class="cart-container">
+                <div class="cart-header">
+                    <span id="close-button" class="close-button">&times;</span>
+                </div>
+                <div id="cart-body" class="cart-body">
+
+                </div>
+                <div class="cart-footer"></div>
             </div>
-            <div class="phone-box s22">
-                <img src="./img/S22.png" alt="" class="img-s22">
-                <p class="box-text">
-                    Samsung s22
-                </p>
-                <p class="box-price">
-                    $850.000
-                </p>
-                <input type="button" value="Agregar">
-            </div>
-            <div class="phone-box a53">
-                <img src="./img/a53.png" alt="" class="img-a53">
-                <p class="box-text">
-                    Samsung a53
-                </p>
-                <p class="box-price">
-                    $750.000
-                </p>
-                <input type="button" value="Agregar">
-            </div>
-            <div class="phone-box a33">
-                <img src="./img/a33.png" alt="" class="img-a33">
-                <p class="box-text">
-                    Samsung a33
-                </p>
-                <p class="box-price">
-                    $400.000
-                </p>
-                <input type="button" value="Agregar">
-            </div>
-            <div class="phone-box one">
-                <img src="./img/one.png" alt="" class="img-one">
-                <p class="box-text">
-                    Motorola One Vision
-                </p>
-                <p class="box-price">
-                    $450.000
-                </p>
-                <input type="button" value="Agregar">
-            </div>
+        </div>
+        <div id="phone-list" class="phone-list">
+            <!-- Aquí se cargan los teléfonos a través del código JS -->
+        </div>
+        <div id="cart-btn" class="cart">
+            <p id="cart-qty">
+                0
+            </p>
+            <p>
+                &#128722;
+            </p>
         </div>
     </main>
     <footer>
@@ -101,5 +109,6 @@
     </footer>
 
     <script src="./js/main.js"></script>
+    <script src="https://kit.fontawesome.com/31d4edc7b8.js" crossorigin="anonymous"></script>
 </body>
 </html>

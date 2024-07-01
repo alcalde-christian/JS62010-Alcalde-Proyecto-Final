@@ -3,3 +3,9 @@ Primera entrega:
 - Ciclos
 - Funciones
 - Arrays
+
+Segunda entrega:
+- Objetos
+- Funciones de orden superior
+- DOM
+- Storage

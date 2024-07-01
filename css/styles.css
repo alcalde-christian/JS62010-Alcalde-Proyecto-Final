@@ -224,6 +224,10 @@ main .cart-modal .cart-container .cart-body input:hover {
   transition: background-color ease 0.5s;
   cursor: pointer;
 }
+main .cart-modal .cart-container .cart-body .total-cost {
+  padding: 25px 0;
+  text-align: center;
+}
 main .cart-modal .cart-container .cart-footer {
   height: 10px;
   background-image: url("../img/bg.png");

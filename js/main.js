@@ -62,6 +62,13 @@ const cart = JSON.parse(localStorage.getItem("cart")) || []
 // Globales y DOM
 /////////////////////////////////////////////////////////////////////////////////////////
 
+// Variable del valor final de la compra
+
+let totalCost = 0
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
 // Elementos del modal "info"
 
 const phoneName = document.getElementById("data-name")
@@ -180,6 +187,7 @@ const updateCart = () => {
         <p>No tienes elementos en el carrito.</p>
         `
     } else {
+        totalCost = 0
         cart.forEach (el => {
             cartBody.innerHTML += `
                 <div class="cart-phone-container">
@@ -189,8 +197,10 @@ const updateCart = () => {
                     <input class="delete-btn" type="button" value="Eliminar"></input>
                 </div>
             `
+            totalCost = totalCost + el.price
         })
         cartBody.innerHTML += `
+            <p class="total-cost">Precio final: $ ${totalCost}</p>
             <input id="buy-btn" class="buy-btn" type="button" value="Finalizar compra" ></input>
         `
         endPurchase()

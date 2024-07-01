@@ -255,3 +255,5 @@ displayCart()
 document.addEventListener("DOMContentLoaded", (e) => {
     cartQty.innerText = cart.length
 })
+
+// 

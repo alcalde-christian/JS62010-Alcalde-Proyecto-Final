@@ -103,11 +103,15 @@ const cartBody = document.getElementById("cart-body")
 // Función que muestra la información del teléfono seleccionado en un modal
 
 const displayInfo = () => {
+    // Creación de HTML Collection de botones y transformación en array
     const infoBtns = document.getElementsByClassName("info-btn")
     const arrayInfoBtns = Array.from(infoBtns)
 
+    // Método forEach para cada botón del array
     arrayInfoBtns.forEach (el => {
+        // Evento click para cada botón del array
         el.addEventListener("click", (e) => {
+            // Método find para determinar qué información mostrar
             const phoneToShow = phones.find ( (el) => el.name === e.target.parentElement.parentElement.children[1].innerText)
             phoneName.innerText = phoneToShow.name
             phoneScreen.innerText = phoneToShow.screen
@@ -125,14 +129,21 @@ const displayInfo = () => {
 // Función que agrega el teléfono seleccionado al carrito
 
 const addToCart = () => {
+    // Creación de HTML Collection de botones y transformación en array
     const addBtns = document.getElementsByClassName("add-btn")
     const arrayAddBtns = Array.from(addBtns)
 
+    // Método forEach para cada botón del array
     arrayAddBtns.forEach (el => {
+        // Evento click para cada botón del array
         el.addEventListener("click", (e) => {
+            // Método find para determinar qué teléfono agregar al carrito
             const phoneToAdd = phones.find ( (el) => el.name === e.target.parentElement.parentElement.children[1].innerText)
+            // Método push para agregar el teléfono seleccionado
             cart.push(phoneToAdd)
+            // Actualización del ícono de carrito
             cartQty.innerText = cart.length
+            // Almacenamiento en localStorage
             localStorage.setItem("cart", JSON.stringify(cart))
 
             // Código provisto por chatGPT para animar el ícono del carrito
@@ -150,12 +161,16 @@ const addToCart = () => {
 // Función que cierra el modal cuando se hace click en "X"
 
 const closeModal = () => {
+    // Creación de HTML Collection de botones y transformación en array
     const closeBtn = document.getElementsByClassName("close-button")
     const arrayCloseBtn = Array.from(closeBtn)
 
+    // Método forEach para cada botón del array
     arrayCloseBtn.forEach (el => {
+        // Evento click para cada botón del array
         el.addEventListener("click", (e) => {
             e.target.parentElement.parentElement.parentElement.style.display="none"
+            // Reset del carrito al cerrar el mismo para evitar duplicaciones
             if (e.target.parentElement.parentElement.children[1].id == "cart-body") {
                 e.target.parentElement.parentElement.children[1].innerHTML = ""
             }
@@ -169,6 +184,7 @@ const closeModal = () => {
 // Función que muestra el carrito al hacer click en el ícono
 
 const displayCart = () => {
+    // Evento click para el botón de carrito
     cartBtn.addEventListener("click", (e) => {
         updateCart()
         cartModal.style.display="block"
@@ -181,13 +197,17 @@ const displayCart = () => {
 // Función que actualiza el carrito (cuando se hace click en el ícono o el eliminar)
 
 const updateCart = () => {
+    // Reset del carrito para evitar duplicaciones
     cartBody.innerHTML = ""
+    // Condicional para decidir qué información mostrar en el carrito
     if (cart == "") {
         cartBody.innerHTML = `
         <p>No tienes elementos en el carrito.</p>
         `
     } else {
+        // Reset de la variable que contiene el total para evitar que siga subiendo de valor
         totalCost = 0
+        // Método forEach para agregar los elementos al carrito desde el array cart
         cart.forEach (el => {
             cartBody.innerHTML += `
                 <div class="cart-phone-container">
@@ -214,16 +234,25 @@ const updateCart = () => {
 // Función que elimina el teléfono seleccionado del carrito
 
 const deleteItem = () => {
+    // Creación de HTML Collection de botones y transformación en array
     const deleteBtns = document.getElementsByClassName("delete-btn")
     const arrayDeleteBtns = Array.from(deleteBtns)
     
+    // Método forEach para cada botón del array
     arrayDeleteBtns.forEach (el => {
+        // Evento click para cada botón del array
         el.addEventListener("click", e => {
-            const phoneToDelete = cart.find((el) => el.name ===e.target.parentElement.children[1].innerText)
+            // Método find para determinar qué teléfono eliminar del carrito
+            const phoneToDelete = cart.find((el) => el.name === e.target.parentElement.children[1].innerText)
+            // Método indexOf para determinar en qué posición del array se encuentra el teléfono a eliminar
             const phoneToDeleteIndex = cart.indexOf(phoneToDelete)
+            // Método splice para eliminar el teléfono seleccionado
             cart.splice (phoneToDeleteIndex, 1)
+            // Actualización del ícono de carrito
             cartQty.innerText = cart.length
+            // Actualización del localStorage
             localStorage.setItem("cart", JSON.stringify(cart))
+            // Llamado a función para mostrar el carrito sin el teléfono eliminado
             updateCart()
         })
     })
@@ -236,9 +265,13 @@ const deleteItem = () => {
 
 const endPurchase = () => {
     const buyBtn = document.getElementById("buy-btn")
+    // Evento click para el botón "terminar compra"
     buyBtn.addEventListener ("click", (e) => {
+        // Método splice para vaciar el carrito 
         cart.splice(0, cart.length)
+        // Limpieza del localStorage
         localStorage.clear("cart")
+        // Actualización del ícono de carrito
         cartQty.innerText = cart.length
         e.target.parentElement.parentElement.parentElement.style.display = "none"
     })
@@ -263,6 +296,7 @@ displayCart()
 /////////////////////////////////////////////////////////////////////////////////////////
 
 document.addEventListener("DOMContentLoaded", (e) => {
+    // Actualización del ícono de carrito según datos almacenados en localStorage
     cartQty.innerText = cart.length
 })
 

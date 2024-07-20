@@ -14,8 +14,8 @@ main {
             margin: 0 25%;
 
             .info-header {
-                margin: 0 25%;
                 @include modal-header-styles;
+                margin: 0 25%;
     
                 .close-button {
                     @include close-button-styles;

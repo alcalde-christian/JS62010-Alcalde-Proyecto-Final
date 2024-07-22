@@ -5,7 +5,7 @@
 // Clases para teléfonos
 
 class Phone {
-    constructor (name, screen, ram, storage, camera, price, img) {
+    constructor (name, screen, ram, storage, camera, price, img, stock) {
         this.name = name
         this.screen = screen
         this.ram = ram
@@ -13,6 +13,7 @@ class Phone {
         this.camera = camera
         this.price = price
         this.img = img
+        this.stock = stock
     }
 }
 
@@ -23,32 +24,22 @@ class Phone {
 
 // Array de teléfonos instanciados a través de la clase "Phone"
 
-const phones = [
-    new Phone ("iPhone 14 Pro Max", "6.7 Super Retina", "6Gb", "256Gb", "48MP + 12MP + 12MP", 1500000, "./img/14promax.png"),
-    new Phone ("Samsung s24 Ultra", "6.7 Dynamic AMOLED", "12Gb", "256Gb", "200MP + 12MP + 10MP + 10MP", 2200000, "./img/s24ultra.png"),
-    new Phone ("Samsung s22", "6.1 Dynamic AMOLED", "8Gb", "128Gb", "50MP + 12MP + 10MP", 850000, "./img/S22.png"),
-    new Phone ("Samsung a53", "6.5 Super AMOLED", "8Gb", "128Gb", "64MP + 12MP + 5MP + 5MP", 750000, "./img/a53.png"),
-    new Phone ("Samsung a33", "6.4 Super AMOLED", "6Gb", "128Gb", "48MP + 8MP + 5MP + 2MP", 400000, "./img/a33.png"),
-    new Phone ("Motorola One Vision", "6.3 LCD", "4Gb", "128Gb", "48MP + 5MP", 450000, "./img/one.png")
-]
+// const phones = [
+//     new Phone ("iPhone 14 Pro Max", "6.7 Super Retina", "6Gb", "256Gb", "48MP + 12MP + 12MP", 1500000, "./img/14promax.png"),
+//     new Phone ("Samsung s24 Ultra", "6.7 Dynamic AMOLED", "12Gb", "256Gb", "200MP + 12MP + 10MP + 10MP", 2200000, "./img/s24ultra.png"),
+//     new Phone ("Samsung s22", "6.1 Dynamic AMOLED", "8Gb", "128Gb", "50MP + 12MP + 10MP", 850000, "./img/S22.png"),
+//     new Phone ("Samsung a53", "6.5 Super AMOLED", "8Gb", "128Gb", "64MP + 12MP + 5MP + 5MP", 750000, "./img/a53.png"),
+//     new Phone ("Samsung a33", "6.4 Super AMOLED", "6Gb", "128Gb", "48MP + 8MP + 5MP + 2MP", 400000, "./img/a33.png"),
+//     new Phone ("Motorola One Vision", "6.3 LCD", "4Gb", "128Gb", "48MP + 5MP", 450000, "./img/one.png")
+// ]
 
 
 // Creación de "cards" a través del array de teléfonos
 
-phones.forEach (el => {
-    const phoneList = document.getElementById("phone-list")
-    phoneList.innerHTML += `
-    <div class="phone-box">
-        <img src=${el.img} alt="Foto de ${el.name}">
-        <p class="box-text">${el.name}</p>
-        <p class="box-price">$ ${el.price}</p>
-        <div class="buttons-container">
-            <input class="info-btn" type="button" value="+ info">
-            <input class="add-btn" type="button" value="Agregar">
-        </div>
-    </div>
-    `
-})
+
+
+
+
 
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -65,6 +56,11 @@ const cart = JSON.parse(localStorage.getItem("cart")) || []
 // Variable del valor final de la compra
 
 let totalCost = 0
+
+let phones = []
+
+let timeOutCompleted = false
+let pageLoaded = false
 
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -278,13 +274,68 @@ const endPurchase = () => {
 }
 
 
+const createCards = (phones) => {
+    const phoneList = document.getElementById("phone-list")
+    phones.forEach (el => {
+        phoneList.innerHTML += `
+        <div class="phone-box">
+            <img src=${el.img} alt="Foto de ${el.name}">
+            <p class="box-text">${el.name}</p>
+            <p class="box-price">$ ${el.price}</p>
+            <div class="buttons-container">
+                <input class="info-btn" type="button" value="+ info">
+                <input class="add-btn" type="button" value="Agregar">
+            </div>
+        </div>
+        `
+    })
+
+    displayInfo()
+
+    addToCart()
+}
+
+
+const obtainJSONData = async () => {
+    try {
+        const response = await fetch ("./data/data.json")
+        const data = await response.json()
+
+        phones = data.phones.map(el => new Phone(
+            el.name,
+            el.screen,
+            el.ram,
+            el.storage,
+            el.camera,
+            el.price,
+            el.img,
+            el.stock
+        ))
+
+        createCards(phones)
+
+    } catch (error) {
+        console.error(error.message)
+        // Insertar Swal aquí
+    }
+}
+
+const hideSpinner = () => {
+    if (timeOutCompleted && pageLoaded) {
+        const spinner = document.getElementById("spinner")
+        spinner.classList.add("spinner-fade")
+        setTimeout(() => {
+            spinner.style.display = "none"
+        }, 500)
+    }
+}
+
+
 /////////////////////////////////////////////////////////////////////////////////////////
 // Llamado a funciones
 /////////////////////////////////////////////////////////////////////////////////////////
 
-displayInfo()
-
-addToCart()
+obtainJSONData()
 
 closeModal()
 
@@ -300,4 +351,13 @@ document.addEventListener("DOMContentLoaded", (e) => {
     cartQty.innerText = cart.length
 })
 
-// 
+setTimeout(() => {
+    timeOutCompleted = true
+    hideSpinner()
+}, 2000)
+
+window.addEventListener("load", (e) => {
+    pageLoaded = true
+    hideSpinner()
+})
+

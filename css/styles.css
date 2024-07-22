@@ -272,6 +272,10 @@ main .cart-modal .cart-container .cart-footer {
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
 }
+main .phone-search {
+  display: flex;
+  justify-content: center;
+}
 main .phone-list {
   display: flex;
   flex-wrap: wrap;

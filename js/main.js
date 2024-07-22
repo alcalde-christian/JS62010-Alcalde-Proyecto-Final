@@ -22,27 +22,10 @@ class Phone {
 // Creación de arrays
 /////////////////////////////////////////////////////////////////////////////////////////
 
-// Array de teléfonos instanciados a través de la clase "Phone"
+// Array de teléfonos que se instanciarán a través de la clase "Phone"
 
-// const phones = [
-//     new Phone ("iPhone 14 Pro Max", "6.7 Super Retina", "6Gb", "256Gb", "48MP + 12MP + 12MP", 1500000, "./img/14promax.png"),
-//     new Phone ("Samsung s24 Ultra", "6.7 Dynamic AMOLED", "12Gb", "256Gb", "200MP + 12MP + 10MP + 10MP", 2200000, "./img/s24ultra.png"),
-//     new Phone ("Samsung s22", "6.1 Dynamic AMOLED", "8Gb", "128Gb", "50MP + 12MP + 10MP", 850000, "./img/S22.png"),
-//     new Phone ("Samsung a53", "6.5 Super AMOLED", "8Gb", "128Gb", "64MP + 12MP + 5MP + 5MP", 750000, "./img/a53.png"),
-//     new Phone ("Samsung a33", "6.4 Super AMOLED", "6Gb", "128Gb", "48MP + 8MP + 5MP + 2MP", 400000, "./img/a33.png"),
-//     new Phone ("Motorola One Vision", "6.3 LCD", "4Gb", "128Gb", "48MP + 5MP", 450000, "./img/one.png")
-// ]
+let phones = []
 
-
-// Creación de "cards" a través del array de teléfonos
-
-
-
-
-
-
-
-/////////////////////////////////////////////////////////////////////////////////////////
 
 // Array de carrito de compras
 
@@ -57,7 +40,10 @@ const cart = JSON.parse(localStorage.getItem("cart")) || []
 
 let totalCost = 0
 
-let phones = []
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+// Variables para el funcionamiento del spinner
 
 let timeOutCompleted = false
 let pageLoaded = false
@@ -147,6 +133,17 @@ const addToCart = () => {
             setTimeout(() => {
                 cartBtn.classList.remove("jump");
             }, 1000);
+
+            Swal.fire({
+                position: "top-end",
+                text: `Se agregó ${phoneToAdd.name} al carrito`,
+                toast: true,
+                color: "#AE31BF",
+                background: "#F4DFF5",
+                showConfirmButton: false,
+                timer: 1500,
+                timerProgressBar: true,
+            });
         })
     })
 }
@@ -248,6 +245,18 @@ const deleteItem = () => {
             cartQty.innerText = cart.length
             // Actualización del localStorage
             localStorage.setItem("cart", JSON.stringify(cart))
+
+            Swal.fire({
+                position: "top-end",
+                text: `Se eliminó ${phoneToDelete.name} del carrito`,
+                toast: true,
+                color: "#AE31BF",
+                background: "#F4DFF5",
+                showConfirmButton: false,
+                timer: 1500,
+                timerProgressBar: true,
+            });
+
             // Llamado a función para mostrar el carrito sin el teléfono eliminado
             updateCart()
         })
@@ -274,6 +283,10 @@ const endPurchase = () => {
 }
 
 
+/////////////////////////////////////////////////////////////////////////////////////////
+
+// Función que crea las tarjetas de los teléfonos a partir de la información de data.json
+
 const createCards = (phones) => {
     const phoneList = document.getElementById("phone-list")
     phones.forEach (el => {
@@ -295,6 +308,10 @@ const createCards = (phones) => {
     addToCart()
 }
 
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+// Función que obtiene la información alojada en data.json e instancia objetos
 
 const obtainJSONData = async () => {
     try {
@@ -319,6 +336,11 @@ const obtainJSONData = async () => {
         // Insertar Swal aquí
     }
 }
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+// Función que oculta el spinner de carga inicial
 
 const hideSpinner = () => {
     if (timeOutCompleted && pageLoaded) {

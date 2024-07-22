@@ -9,3 +9,15 @@ Segunda entrega:
 - Funciones de orden superior
 - DOM
 - Storage
+
+Entrega final:
+- JSON OK
+- Cards a través de JSON OK
+- Spinner OK
+- SweetAlert
+    - Agregar teléfono al carrito OK
+    - Eliminar teléfono del carrito
+    - Finalizar compra
+- Buscador de teléfonos
+- Agrupar teléfonos iguales en carrito
+- Proceso de compra en HTML separado

@@ -167,6 +167,11 @@ main {
         }
     }
 
+    .phone-search {
+        display: flex;
+        justify-content: center;
+    }
+
     .phone-list {
         display: flex;
         flex-wrap: wrap;

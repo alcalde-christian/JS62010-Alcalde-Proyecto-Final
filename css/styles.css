@@ -78,11 +78,6 @@ footer p {
     transform: scale(1);
   }
 }
-:root {
-  --sk-size: 100%;
-  --sk-color: #333;
-}
-
 main {
   background-color: #f6f6f6;
 }

@@ -333,7 +333,15 @@ const obtainJSONData = async () => {
 
     } catch (error) {
         console.error(error.message)
-        // Insertar Swal aquí
+
+        Swal.fire({
+            icon: "error",
+            title: "Ups!...",
+            text: "Se ha producido un error inesperado",
+            background: "#f6f6f6",
+            confirmButtonColor: "#AE31BF",
+            footer: `Error: ${error.message}`
+          });
     }
 }
 

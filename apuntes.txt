@@ -15,9 +15,10 @@ Entrega final:
 - Cards a través de JSON OK
 - Spinner OK
 - SweetAlert
+    - Error en JSON OK
     - Agregar teléfono al carrito OK
-    - Eliminar teléfono del carrito
+    - Eliminar teléfono del carrito OK
     - Finalizar compra
-- Buscador de teléfonos
+- Buscador de teléfonos OK
 - Agrupar teléfonos iguales en carrito
 - Proceso de compra en HTML separado

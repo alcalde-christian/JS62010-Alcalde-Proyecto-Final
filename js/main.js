@@ -79,6 +79,15 @@ const cartBody = document.getElementById("cart-body")
 
 
 /////////////////////////////////////////////////////////////////////////////////////////
+
+// Elementos del buscador
+
+const searchText = document.getElementById("search-text")
+const searchBtn = document.getElementById("search-btn")
+// const cleanBtn = document.getElementById("clean-btn")
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
 // Declaración de funciones
 /////////////////////////////////////////////////////////////////////////////////////////
 
@@ -362,6 +371,22 @@ const hideSpinner = () => {
 
 
 /////////////////////////////////////////////////////////////////////////////////////////
+
+// Función que busca teléfonos según el texto ingresado
+
+const searchPhone = () => {
+    searchBtn.addEventListener("click", (e) => {
+        const phoneToSearch = phones.filter (el =>  el.name.toLowerCase().includes(e.target.parentElement.children[0].value.toLowerCase()))
+
+        searchText.value = ""
+        const phoneList = document.getElementById("phone-list")
+        phoneList.innerHTML = ""
+        createCards(phoneToSearch)
+    })
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
 // Llamado a funciones
 /////////////////////////////////////////////////////////////////////////////////////////
 
@@ -370,6 +395,8 @@ obtainJSONData()
 closeModal()
 
 displayCart()
+
+searchPhone()
 
 
 /////////////////////////////////////////////////////////////////////////////////////////

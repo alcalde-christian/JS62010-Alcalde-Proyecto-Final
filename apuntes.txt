@@ -22,3 +22,4 @@ Entrega final:
 - Buscador de teléfonos OK
 - Agrupar teléfonos iguales en carrito
 - Proceso de compra en HTML separado
+- Stocks

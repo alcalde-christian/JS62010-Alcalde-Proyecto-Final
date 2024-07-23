@@ -374,14 +374,36 @@ const hideSpinner = () => {
 
 // Función que busca teléfonos según el texto ingresado
 
-const searchPhone = () => {
-    searchBtn.addEventListener("click", (e) => {
-        const phoneToSearch = phones.filter (el =>  el.name.toLowerCase().includes(e.target.parentElement.children[0].value.toLowerCase()))
+const searchPhone = (event) => {
+    const phoneToSearch = phones.filter (el =>  el.name.toLowerCase().includes(event.target.parentElement.children[0].value.toLowerCase()))
 
+    if (phoneToSearch == "") {
+        Swal.fire({
+            icon: "error",
+            text: "No se ha encontrado ningún teléfono con ese nombre",
+            background: "#f6f6f6",
+            confirmButtonColor: "#AE31BF",
+        });
+        return
+    } else {
         searchText.value = ""
         const phoneList = document.getElementById("phone-list")
         phoneList.innerHTML = ""
         createCards(phoneToSearch)
+    }
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+// Función que agrega eventos al texto de búsqueda (keydown) y al botón (click)
+
+const addSearchListener = (element, event) => {
+    element.addEventListener(event, (e) => {
+        if (event === "click" || (event === "keydown" && e.key === "Enter")) {
+            e.preventDefault();
+            searchPhone(e)
+        }
     })
 }
 
@@ -396,14 +418,16 @@ closeModal()
 
 displayCart()
 
-searchPhone()
+addSearchListener(searchBtn, "click")
+
+addSearchListener(searchText, "keydown")
 
 
 /////////////////////////////////////////////////////////////////////////////////////////
 // Evento de carga del DOM
 /////////////////////////////////////////////////////////////////////////////////////////
 
-document.addEventListener("DOMContentLoaded", (e) => {
+document.addEventListener("DOMContentLoaded", () => {
     // Actualización del ícono de carrito según datos almacenados en localStorage
     cartQty.innerText = cart.length
 })
@@ -413,7 +437,7 @@ setTimeout(() => {
     hideSpinner()
 }, 2000)
 
-window.addEventListener("load", (e) => {
+window.addEventListener("load", () => {
     pageLoaded = true
     hideSpinner()
 })

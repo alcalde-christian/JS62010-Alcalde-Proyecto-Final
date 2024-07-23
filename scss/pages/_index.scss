@@ -165,6 +165,27 @@ main {
     .phone-search {
         display: flex;
         justify-content: center;
+        column-gap: 15px;
+
+        .search-text {
+            padding: 2px 10px;
+            border-radius: 25px;
+            border: 2px solid $main-color;
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        .search-btn {
+            @include button-styles;
+            border: none;
+            background-color: $back-color;
+
+            &:hover {
+                @include button-styles-hover;
+            }
+        }
     }
 
     .phone-list {

@@ -10,6 +10,7 @@ body {
     main {
         background-color: $back-color;
         flex: 1;
+        transition: background-color 0.5s ease;
 
         .spinner {
             width: 100%;
@@ -283,5 +284,9 @@ body {
                 align-items: center;
             }
         }
+    }
+
+    .main-dark {
+        background-color: $back-color-dark;
     }
 }

@@ -89,6 +89,18 @@ const phoneSearchDiv = document.getElementById("phone-search")
 
 
 /////////////////////////////////////////////////////////////////////////////////////////
+
+// Elementos del modo oscuro
+
+let darkMode = localStorage.getItem("dark")
+
+const darkModeBtn = document.getElementById("toggle-dark")
+const headerElement = document.getElementById("header")
+const mainElement = document.getElementById("main")
+const footerElement = document.getElementById("footer")
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
 // Declaración de funciones
 /////////////////////////////////////////////////////////////////////////////////////////
 
@@ -421,6 +433,32 @@ const showAndHideSearcher = () => {
 
 
 /////////////////////////////////////////////////////////////////////////////////////////
+
+// Función que alterna entre modo oscuro y modo claro
+
+const toggleDarkMode = () => {
+    if (darkMode == null) {
+        localStorage.setItem("dark", "false")
+    } else if (darkMode == "true") {
+        headerElement.classList.toggle("header-dark")
+        mainElement.classList.toggle("main-dark")
+        footerElement.classList.toggle("footer-dark")
+    }
+
+    darkModeBtn.addEventListener ("click", () => {
+        headerElement.classList.toggle("header-dark")
+        mainElement.classList.toggle("main-dark")
+        footerElement.classList.toggle("footer-dark")
+        if (headerElement.classList.contains("header-dark")) {
+            localStorage.setItem("dark", "true")
+        } else {
+            localStorage.setItem("dark", "false")
+        }
+    })
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
 // Llamado a funciones
 /////////////////////////////////////////////////////////////////////////////////////////
 
@@ -436,6 +474,8 @@ addSearchListener(searchText, "keydown")
 
 showAndHideSearcher()
 
+toggleDarkMode()
+
 
 /////////////////////////////////////////////////////////////////////////////////////////
 // Evento de carga del DOM
@@ -446,13 +486,13 @@ document.addEventListener("DOMContentLoaded", () => {
     cartQty.innerText = cart.length
 })
 
-setTimeout(() => {
-    timeOutCompleted = true
-    hideSpinner()
-}, 2000)
+// setTimeout(() => {
+//     timeOutCompleted = true
+//     hideSpinner()
+// }, 2000)
 
-window.addEventListener("load", () => {
-    pageLoaded = true
-    hideSpinner()
-})
+// window.addEventListener("load", () => {
+//     pageLoaded = true
+//     hideSpinner()
+// })
 

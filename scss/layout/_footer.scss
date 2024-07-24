@@ -4,6 +4,8 @@ footer {
     height: 50px;
     text-align: center;
     background-color: $back-color;
+    transition: background-color 0.5s ease;
+    
 
     p {
         height: 50px;
@@ -14,4 +16,8 @@ footer {
         background-image: url("../img/bg.png");
         font-size: 12px;
     }
+}
+
+.footer-dark {
+    background-color: $back-color-dark;
 }

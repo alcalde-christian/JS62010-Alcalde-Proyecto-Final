@@ -7,6 +7,7 @@ header {
   background-color: #f6f6f6;
   height: 115px;
   z-index: 1;
+  transition: background-color 0.5s ease;
 }
 header .header-promo {
   height: 20px;
@@ -51,10 +52,15 @@ header .header-buttons .dark-button:hover {
   cursor: pointer;
 }
 
+.header-dark {
+  background-color: #282828;
+}
+
 footer {
   height: 50px;
   text-align: center;
   background-color: #f6f6f6;
+  transition: background-color 0.5s ease;
 }
 footer p {
   height: 50px;
@@ -64,6 +70,10 @@ footer p {
   box-shadow: 3px 3px 6px gray;
   background-image: url("../img/bg.png");
   font-size: 12px;
+}
+
+.footer-dark {
+  background-color: #282828;
 }
 
 @keyframes animatetop {
@@ -103,6 +113,7 @@ body {
 body main {
   background-color: #f6f6f6;
   flex: 1;
+  transition: background-color 0.5s ease;
 }
 body main .spinner {
   width: 100%;
@@ -401,6 +412,9 @@ body main .cart p {
   margin: 5% 0;
   justify-content: center;
   align-items: center;
+}
+body .main-dark {
+  background-color: #282828;
 }
 
 /*# sourceMappingURL=styles.css.map */

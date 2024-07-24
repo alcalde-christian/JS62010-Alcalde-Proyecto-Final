@@ -3,6 +3,7 @@
 header {
     background-color: $back-color;
     height: 115px;
+    z-index: 1;
     
     .header-promo {
         height: 20px;
@@ -11,27 +12,54 @@ header {
         text-align: center;
         font-size: 0.8em;
     }
+
     .header-container {
+        display: flex;
+        justify-content: space-between;
         height: 85px;
         margin: 0 10%;
-        display: flex;
-        align-items: center;
-        gap: 15px;
         background-image: url("../img/bg.png");
         box-shadow: 3px 3px 6px grey;
         border-radius: 0 0 10px 10px;
 
-        h1 {
-            i {
-                color: $sub-color;
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+    
+            h1 {
+                i {
+                    color: $sub-color;
+                }
+            }
+    
+            .logo {
+                border: 2px solid $sub-color;
+                border-radius: 50%;
+                margin-left: 10px;
+                width: 75px;
+            }
+        }
+    }
+
+    .header-buttons {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        margin-right: 10px;
+
+        .search-button {
+
+            &:hover {
+                cursor: pointer;
             }
         }
 
-        .logo {
-            border: 2px solid $sub-color;
-            border-radius: 50%;
-            margin-left: 10px;
-            width: 75px;
+        .dark-button {
+
+            &:hover {
+                cursor: pointer;
+            }
         }
     }
 }

@@ -2,134 +2,151 @@
 @import "../abstracts/mixins";
 @import "../animations/keyframes";
 
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 
-main {
-    background-color: $back-color;
+    main {
+        background-color: $back-color;
+        flex: 1;
 
-    .spinner {
-        width: 100%;
-        height: 100%;
-        position: fixed;
-        top: 0;
-        z-index: 1;
-        background-color: $main-color-light;
+        .spinner {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 1;
+            background-color: $main-color-light;
 
-        .double-bounce1, .double-bounce2 {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: $main-color;
-            opacity: 0.6;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            animation: sk-bounce 2.0s infinite ease-in-out;
+            .double-bounce1, .double-bounce2 {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background-color: $main-color;
+                opacity: 0.6;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                animation: sk-bounce 2.0s infinite ease-in-out;
+            }
+
+            .double-bounce2 {
+                animation-delay: -1.0s;
+            }
+        }
+        
+        .spinner-fade {
+            opacity: 0;
+            transition: opacity 0.5s ease
         }
 
-        .double-bounce2 {
-            animation-delay: -1.0s;
-        }
-    }
-    
-    .spinner-fade {
-        opacity: 0;
-        transition: opacity 0.5s ease
-    }
+        .info-modal {
+            @include modal-styles;
 
-    .info-modal {
-        @include modal-styles;
-
-        .info-container {
-            @include modal-container-styles;
-            margin: 0 25%;
-
-            .info-header {
-                @include modal-header-styles;
+            .info-container {
+                @include modal-container-styles;
                 margin: 0 25%;
-    
-                .close-button {
-                    @include close-button-styles;
-    
-                    &:hover {
-                        @include close-button-hover;
+
+                .info-header {
+                    @include modal-header-styles;
+                    margin: 0 25%;
+        
+                    .close-button {
+                        @include close-button-styles;
+        
+                        &:hover {
+                            @include close-button-hover;
+                        }
                     }
                 }
-            }
-            
-            .info-body {
-                display: flex;
-                margin: 0 25%;
-                padding: 25px 0;
-                height: 200px;
-                background-color: $back-color;
-    
-                .info-body-icons {
-                    @include flex-col;
-                    align-items: center;
-                    width: 30%;
-                    gap: 15px;
-                }
-    
-                .info-body-data {
-                    @include flex-col;
-                    align-items: start;
-                    width: 70%;
-                    gap: 15px;
-                }
-            }
-    
-            .info-footer {
-                margin: 0 25%;
-                width: 50%;
-                @include modal-footer-styles;
-            }
-        }
-    }
-
-    .cart-modal {
-        @include modal-styles;
-
-        .cart-container {
-            @include modal-container-styles;
-            margin: 0 26%;
-
-            .cart-header {
-                @include modal-header-styles;
-
-                .close-button {
-                    @include close-button-styles;
-
-                    &:hover {
-                        @include close-button-hover;
-                    }
-                }
-            }
-
-            .cart-body {
-                background-color: $back-color;
-                padding: 25px;
-                overflow-y: auto;
-                max-height: 50vh;
-
-                .cart-phone-container {
+                
+                .info-body {
                     display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    width: 100%;
-                    margin: 5px 0;
-
-                    img {
-                        width: 15%;
+                    margin: 0 25%;
+                    padding: 25px 0;
+                    height: 200px;
+                    background-color: $back-color;
+        
+                    .info-body-icons {
+                        @include flex-col;
+                        align-items: center;
+                        width: 30%;
+                        gap: 15px;
                     }
+        
+                    .info-body-data {
+                        @include flex-col;
+                        align-items: start;
+                        width: 70%;
+                        gap: 15px;
+                    }
+                }
+        
+                .info-footer {
+                    margin: 0 25%;
+                    width: 50%;
+                    @include modal-footer-styles;
+                }
+            }
+        }
 
-                    p {
-                        width: 35%;
-                        padding: 0 15px;
+        .cart-modal {
+            @include modal-styles;
+
+            .cart-container {
+                @include modal-container-styles;
+                margin: 0 26%;
+
+                .cart-header {
+                    @include modal-header-styles;
+
+                    .close-button {
+                        @include close-button-styles;
+
+                        &:hover {
+                            @include close-button-hover;
+                        }
+                    }
+                }
+
+                .cart-body {
+                    background-color: $back-color;
+                    padding: 25px;
+                    overflow-y: auto;
+                    max-height: 50vh;
+
+                    .cart-phone-container {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        width: 100%;
+                        margin: 5px 0;
+
+                        img {
+                            width: 15%;
+                        }
+
+                        p {
+                            width: 35%;
+                            padding: 0 15px;
+                        }
+
+                        input {
+                            width: 15%;
+                            margin: 15px;
+                            padding: 5px;
+                            @include button-styles;
+
+                            &:hover {
+                                @include button-styles-hover;
+                            }
+                        }
                     }
 
                     input {
-                        width: 15%;
-                        margin: 15px;
+                        width: 40%;
+                        margin: 0 30%;
                         padding: 5px;
                         @include button-styles;
 
@@ -137,138 +154,134 @@ main {
                             @include button-styles-hover;
                         }
                     }
-                }
 
-                input {
-                    width: 40%;
-                    margin: 0 30%;
-                    padding: 5px;
-                    @include button-styles;
-
-                    &:hover {
-                        @include button-styles-hover;
+                    .total-cost {
+                        padding: 25px 0;
+                        text-align: center;
                     }
                 }
 
-                .total-cost {
-                    padding: 25px 0;
-                    text-align: center;
-                }
-            }
-
-            .cart-footer {
-                @include modal-footer-styles;
-            }
-        }
-    }
-
-    .phone-search {
-        display: flex;
-        justify-content: center;
-        column-gap: 15px;
-
-        .search-text {
-            padding: 2px 10px;
-            border-radius: 25px;
-            border: 2px solid $main-color;
-
-            &:focus {
-                outline: none;
-            }
-        }
-
-        .search-btn {
-            @include button-styles;
-            border: none;
-            background-color: $back-color;
-
-            &:hover {
-                @include button-styles-hover;
-            }
-        }
-    }
-
-    .phone-list {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        width: 70%;
-        margin: 0 15%;
-        padding: 50px 0;
-        gap: 25px;
-
-        .phone-box {
-            background-color: $back-card;
-            @include flex-col;
-            text-align: center;
-            width: 250px;
-            border: 2px solid $main-color;
-            border-radius: 10px;
-            box-shadow: 5px 5px 10px gray;
-
-            &:hover {
-                border: 2px solid $sub-color;
-                transition: border ease 0.3s;
-            }
-
-            img {
-                width: 100%;
-                margin-top: 25px;
-            }
-
-            .box-text {
-                font-weight: bold;
-                color: $main-color;
-                margin-top: 25px;
-            }
-
-            .box-price {
-                margin-top: 25px;
-            }
-
-            .buttons-container {
-                @include flex-col;
-                margin: 15px 0;
-
-                input {
-                    margin: 5px 15%;
-                    padding: 5px;
-                    @include button-styles;
-    
-                    &:hover {
-                        @include button-styles-hover;
-                    }
+                .cart-footer {
+                    @include modal-footer-styles;
                 }
             }
         }
-    }
 
-    .cart {
-        position: fixed;
-        bottom: 25px;
-        right: 25px;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        border: 2px solid $main-color;
-        background-color: $sub-color;
-        box-shadow: 5px 5px 10px grey;
-
-        &:hover {
-            cursor: pointer;
-        }
-
-        &.jump {
-            animation: jump 1.5s ease;
-        }
-
-        p {
+        .phone-search {
             display: flex;
-            width: 100%;
-            height: 40%;
-            margin: 5% 0;
             justify-content: center;
-            align-items: center;
+            column-gap: 15px;
+            position: relative;
+            top: -50px;
+            transition: transform 1s ease;
+
+            .search-text {
+                padding: 2px 10px;
+                border-radius: 25px;
+                border: 2px solid $main-color;
+
+                &:focus {
+                    outline: none;
+                }
+            }
+
+            .search-btn {
+                @include button-styles;
+                border: none;
+                background-color: $back-color;
+
+                &:hover {
+                    @include button-styles-hover;
+                }
+            }
+        }
+
+        .show {
+            transform: translateY(50px);
+        }
+
+        .phone-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 70%;
+            margin: 0 15%;
+            padding: 50px 0;
+            gap: 25px;
+
+            .phone-box {
+                background-color: $back-card;
+                @include flex-col;
+                text-align: center;
+                width: 250px;
+                border: 2px solid $main-color;
+                border-radius: 10px;
+                box-shadow: 5px 5px 10px gray;
+
+                &:hover {
+                    border: 2px solid $sub-color;
+                    transition: border ease 0.3s;
+                }
+
+                img {
+                    width: 100%;
+                    margin-top: 25px;
+                }
+
+                .box-text {
+                    font-weight: bold;
+                    color: $main-color;
+                    margin-top: 25px;
+                }
+
+                .box-price {
+                    margin-top: 25px;
+                }
+
+                .buttons-container {
+                    @include flex-col;
+                    margin: 15px 0;
+
+                    input {
+                        margin: 5px 15%;
+                        padding: 5px;
+                        @include button-styles;
+        
+                        &:hover {
+                            @include button-styles-hover;
+                        }
+                    }
+                }
+            }
+        }
+
+        .cart {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid $main-color;
+            background-color: $sub-color;
+            box-shadow: 5px 5px 10px grey;
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            &.jump {
+                animation: jump 1.5s ease;
+            }
+
+            p {
+                display: flex;
+                width: 100%;
+                height: 40%;
+                margin: 5% 0;
+                justify-content: center;
+                align-items: center;
+            }
         }
     }
 }

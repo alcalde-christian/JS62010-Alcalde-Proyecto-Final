@@ -84,7 +84,8 @@ const cartBody = document.getElementById("cart-body")
 
 const searchText = document.getElementById("search-text")
 const searchBtn = document.getElementById("search-btn")
-// const cleanBtn = document.getElementById("clean-btn")
+const toggleSearchIcon = document.getElementById("toggle-search")
+const phoneSearchDiv = document.getElementById("phone-search")
 
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -409,6 +410,17 @@ const addSearchListener = (element, event) => {
 
 
 /////////////////////////////////////////////////////////////////////////////////////////
+
+// Función que muestra y oculta el buscador de teléfonos
+
+const showAndHideSearcher = () => {
+    toggleSearchIcon.addEventListener("click", () => {
+        phoneSearchDiv.classList.toggle("show")
+    })
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
 // Llamado a funciones
 /////////////////////////////////////////////////////////////////////////////////////////
 
@@ -421,6 +433,8 @@ displayCart()
 addSearchListener(searchBtn, "click")
 
 addSearchListener(searchText, "keydown")
+
+showAndHideSearcher()
 
 
 /////////////////////////////////////////////////////////////////////////////////////////

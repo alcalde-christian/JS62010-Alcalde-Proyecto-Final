@@ -6,6 +6,7 @@
 header {
   background-color: #f6f6f6;
   height: 115px;
+  z-index: 1;
 }
 header .header-promo {
   height: 20px;
@@ -15,23 +16,39 @@ header .header-promo {
   font-size: 0.8em;
 }
 header .header-container {
+  display: flex;
+  justify-content: space-between;
   height: 85px;
   margin: 0 10%;
-  display: flex;
-  align-items: center;
-  gap: 15px;
   background-image: url("../img/bg.png");
   box-shadow: 3px 3px 6px grey;
   border-radius: 0 0 10px 10px;
 }
-header .header-container h1 i {
+header .header-container .header-logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+header .header-container .header-logo h1 i {
   color: #FBF407;
 }
-header .header-container .logo {
+header .header-container .header-logo .logo {
   border: 2px solid #FBF407;
   border-radius: 50%;
   margin-left: 10px;
   width: 75px;
+}
+header .header-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin-right: 10px;
+}
+header .header-buttons .search-button:hover {
+  cursor: pointer;
+}
+header .header-buttons .dark-button:hover {
+  cursor: pointer;
 }
 
 footer {
@@ -78,10 +95,16 @@ footer p {
     transform: scale(1);
   }
 }
-main {
-  background-color: #f6f6f6;
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
-main .spinner {
+body main {
+  background-color: #f6f6f6;
+  flex: 1;
+}
+body main .spinner {
   width: 100%;
   height: 100%;
   position: fixed;
@@ -89,7 +112,7 @@ main .spinner {
   z-index: 1;
   background-color: #f4dff5;
 }
-main .spinner .double-bounce1, main .spinner .double-bounce2 {
+body main .spinner .double-bounce1, body main .spinner .double-bounce2 {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -100,14 +123,14 @@ main .spinner .double-bounce1, main .spinner .double-bounce2 {
   left: 50%;
   animation: sk-bounce 2s infinite ease-in-out;
 }
-main .spinner .double-bounce2 {
+body main .spinner .double-bounce2 {
   animation-delay: -1s;
 }
-main .spinner-fade {
+body main .spinner-fade {
   opacity: 0;
   transition: opacity 0.5s ease;
 }
-main .info-modal {
+body main .info-modal {
   z-index: 1;
   position: fixed;
   display: none;
@@ -117,7 +140,7 @@ main .info-modal {
   width: 100%;
   background-color: rgba(0, 0, 0, 0.4);
 }
-main .info-modal .info-container {
+body main .info-modal .info-container {
   display: flex;
   flex-direction: column;
   position: relative;
@@ -126,45 +149,45 @@ main .info-modal .info-container {
   animation-duration: 0.4s;
   margin: 0 25%;
 }
-main .info-modal .info-container .info-header {
+body main .info-modal .info-container .info-header {
   height: 40px;
   background-image: url("../img/bg.png");
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   margin: 0 25%;
 }
-main .info-modal .info-container .info-header .close-button {
+body main .info-modal .info-container .info-header .close-button {
   float: right;
   margin-right: 10px;
   font-size: 25px;
   font-weight: bold;
 }
-main .info-modal .info-container .info-header .close-button:hover {
+body main .info-modal .info-container .info-header .close-button:hover {
   color: #f4dff5;
   cursor: pointer;
 }
-main .info-modal .info-container .info-body {
+body main .info-modal .info-container .info-body {
   display: flex;
   margin: 0 25%;
   padding: 25px 0;
   height: 200px;
   background-color: #f6f6f6;
 }
-main .info-modal .info-container .info-body .info-body-icons {
+body main .info-modal .info-container .info-body .info-body-icons {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 30%;
   gap: 15px;
 }
-main .info-modal .info-container .info-body .info-body-data {
+body main .info-modal .info-container .info-body .info-body-data {
   display: flex;
   flex-direction: column;
   align-items: start;
   width: 70%;
   gap: 15px;
 }
-main .info-modal .info-container .info-footer {
+body main .info-modal .info-container .info-footer {
   margin: 0 25%;
   width: 50%;
   height: 10px;
@@ -172,7 +195,7 @@ main .info-modal .info-container .info-footer {
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
 }
-main .cart-modal {
+body main .cart-modal {
   z-index: 1;
   position: fixed;
   display: none;
@@ -182,7 +205,7 @@ main .cart-modal {
   width: 100%;
   background-color: rgba(0, 0, 0, 0.4);
 }
-main .cart-modal .cart-container {
+body main .cart-modal .cart-container {
   display: flex;
   flex-direction: column;
   position: relative;
@@ -191,43 +214,43 @@ main .cart-modal .cart-container {
   animation-duration: 0.4s;
   margin: 0 26%;
 }
-main .cart-modal .cart-container .cart-header {
+body main .cart-modal .cart-container .cart-header {
   height: 40px;
   background-image: url("../img/bg.png");
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
 }
-main .cart-modal .cart-container .cart-header .close-button {
+body main .cart-modal .cart-container .cart-header .close-button {
   float: right;
   margin-right: 10px;
   font-size: 25px;
   font-weight: bold;
 }
-main .cart-modal .cart-container .cart-header .close-button:hover {
+body main .cart-modal .cart-container .cart-header .close-button:hover {
   color: #f4dff5;
   cursor: pointer;
 }
-main .cart-modal .cart-container .cart-body {
+body main .cart-modal .cart-container .cart-body {
   background-color: #f6f6f6;
   padding: 25px;
   overflow-y: auto;
   max-height: 50vh;
 }
-main .cart-modal .cart-container .cart-body .cart-phone-container {
+body main .cart-modal .cart-container .cart-body .cart-phone-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
   margin: 5px 0;
 }
-main .cart-modal .cart-container .cart-body .cart-phone-container img {
+body main .cart-modal .cart-container .cart-body .cart-phone-container img {
   width: 15%;
 }
-main .cart-modal .cart-container .cart-body .cart-phone-container p {
+body main .cart-modal .cart-container .cart-body .cart-phone-container p {
   width: 35%;
   padding: 0 15px;
 }
-main .cart-modal .cart-container .cart-body .cart-phone-container input {
+body main .cart-modal .cart-container .cart-body .cart-phone-container input {
   width: 15%;
   margin: 15px;
   padding: 5px;
@@ -237,12 +260,12 @@ main .cart-modal .cart-container .cart-body .cart-phone-container input {
   border-radius: 5px;
   background-color: white;
 }
-main .cart-modal .cart-container .cart-body .cart-phone-container input:hover {
+body main .cart-modal .cart-container .cart-body .cart-phone-container input:hover {
   background-color: #f4dff5;
   transition: background-color ease 0.5s;
   cursor: pointer;
 }
-main .cart-modal .cart-container .cart-body input {
+body main .cart-modal .cart-container .cart-body input {
   width: 40%;
   margin: 0 30%;
   padding: 5px;
@@ -252,35 +275,38 @@ main .cart-modal .cart-container .cart-body input {
   border-radius: 5px;
   background-color: white;
 }
-main .cart-modal .cart-container .cart-body input:hover {
+body main .cart-modal .cart-container .cart-body input:hover {
   background-color: #f4dff5;
   transition: background-color ease 0.5s;
   cursor: pointer;
 }
-main .cart-modal .cart-container .cart-body .total-cost {
+body main .cart-modal .cart-container .cart-body .total-cost {
   padding: 25px 0;
   text-align: center;
 }
-main .cart-modal .cart-container .cart-footer {
+body main .cart-modal .cart-container .cart-footer {
   height: 10px;
   background-image: url("../img/bg.png");
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
 }
-main .phone-search {
+body main .phone-search {
   display: flex;
   justify-content: center;
   column-gap: 15px;
+  position: relative;
+  top: -50px;
+  transition: transform 1s ease;
 }
-main .phone-search .search-text {
+body main .phone-search .search-text {
   padding: 2px 10px;
   border-radius: 25px;
   border: 2px solid #AE31BF;
 }
-main .phone-search .search-text:focus {
+body main .phone-search .search-text:focus {
   outline: none;
 }
-main .phone-search .search-btn {
+body main .phone-search .search-btn {
   font-weight: bold;
   color: #AE31BF;
   border: 1px solid #AE31BF;
@@ -289,12 +315,15 @@ main .phone-search .search-btn {
   border: none;
   background-color: #f6f6f6;
 }
-main .phone-search .search-btn:hover {
+body main .phone-search .search-btn:hover {
   background-color: #f4dff5;
   transition: background-color ease 0.5s;
   cursor: pointer;
 }
-main .phone-list {
+body main .show {
+  transform: translateY(50px);
+}
+body main .phone-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -303,7 +332,7 @@ main .phone-list {
   padding: 50px 0;
   gap: 25px;
 }
-main .phone-list .phone-box {
+body main .phone-list .phone-box {
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -313,28 +342,28 @@ main .phone-list .phone-box {
   border-radius: 10px;
   box-shadow: 5px 5px 10px gray;
 }
-main .phone-list .phone-box:hover {
+body main .phone-list .phone-box:hover {
   border: 2px solid #FBF407;
   transition: border ease 0.3s;
 }
-main .phone-list .phone-box img {
+body main .phone-list .phone-box img {
   width: 100%;
   margin-top: 25px;
 }
-main .phone-list .phone-box .box-text {
+body main .phone-list .phone-box .box-text {
   font-weight: bold;
   color: #AE31BF;
   margin-top: 25px;
 }
-main .phone-list .phone-box .box-price {
+body main .phone-list .phone-box .box-price {
   margin-top: 25px;
 }
-main .phone-list .phone-box .buttons-container {
+body main .phone-list .phone-box .buttons-container {
   display: flex;
   flex-direction: column;
   margin: 15px 0;
 }
-main .phone-list .phone-box .buttons-container input {
+body main .phone-list .phone-box .buttons-container input {
   margin: 5px 15%;
   padding: 5px;
   font-weight: bold;
@@ -343,12 +372,12 @@ main .phone-list .phone-box .buttons-container input {
   border-radius: 5px;
   background-color: white;
 }
-main .phone-list .phone-box .buttons-container input:hover {
+body main .phone-list .phone-box .buttons-container input:hover {
   background-color: #f4dff5;
   transition: background-color ease 0.5s;
   cursor: pointer;
 }
-main .cart {
+body main .cart {
   position: fixed;
   bottom: 25px;
   right: 25px;
@@ -359,13 +388,13 @@ main .cart {
   background-color: #FBF407;
   box-shadow: 5px 5px 10px grey;
 }
-main .cart:hover {
+body main .cart:hover {
   cursor: pointer;
 }
-main .cart.jump {
+body main .cart.jump {
   animation: jump 1.5s ease;
 }
-main .cart p {
+body main .cart p {
   display: flex;
   width: 100%;
   height: 40%;

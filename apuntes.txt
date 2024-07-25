@@ -19,7 +19,10 @@ Entrega final:
     - Agregar teléfono al carrito OK
     - Eliminar teléfono del carrito OK
     - Finalizar compra
+- Modo nocturno OK
 - Buscador de teléfonos OK
 - Agrupar teléfonos iguales en carrito
 - Proceso de compra en HTML separado
 - Stocks
+
+- Ver localStorage.clear

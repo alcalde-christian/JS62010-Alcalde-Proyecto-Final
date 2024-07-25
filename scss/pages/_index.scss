@@ -284,6 +284,13 @@ body {
                 align-items: center;
             }
         }
+
+        .checkout {
+            display: flex;
+            flex-direction: column;
+            width: 80%;
+            margin: 0 10%;
+        }
     }
 
     .main-dark {

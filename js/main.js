@@ -236,7 +236,7 @@ const updateCart = () => {
         })
         cartBody.innerHTML += `
             <p class="total-cost">Precio final: $ ${totalCost}</p>
-            <input id="buy-btn" class="buy-btn" type="button" value="Finalizar compra" ></input>
+            <input id="buy-btn" class="buy-btn" type="button" value="Ir a pagar" ></input>
         `
         endPurchase()
     }
@@ -443,6 +443,9 @@ const toggleDarkMode = () => {
         headerElement.classList.toggle("header-dark")
         mainElement.classList.toggle("main-dark")
         footerElement.classList.toggle("footer-dark")
+        darkModeBtn.innerHTML = `
+        <i class="fa-solid fa-sun" style="color: #000000;"></i>
+        `
     }
 
     darkModeBtn.addEventListener ("click", () => {
@@ -451,8 +454,14 @@ const toggleDarkMode = () => {
         footerElement.classList.toggle("footer-dark")
         if (headerElement.classList.contains("header-dark")) {
             localStorage.setItem("dark", "true")
+            darkModeBtn.innerHTML = `
+            <i class="fa-solid fa-sun" style="color: #000000;"></i>
+            `
         } else {
             localStorage.setItem("dark", "false")
+            darkModeBtn.innerHTML = `
+            <i class="fa-solid fa-moon" style="color: #000000;"></i>
+            `
         }
     })
 }

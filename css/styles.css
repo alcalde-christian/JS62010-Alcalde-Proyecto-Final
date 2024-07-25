@@ -413,6 +413,12 @@ body main .cart p {
   justify-content: center;
   align-items: center;
 }
+body main .checkout {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 0 10%;
+}
 body .main-dark {
   background-color: #282828;
 }

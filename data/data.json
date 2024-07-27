@@ -60,6 +60,13 @@
             "img":"./img/one.png",
             "stock":"not available yet"
         }
+    ],
+    "promo": [
+        {
+            "text": "¡Sólo por HOY! 6 cuotas sin interés en todos los productos o 15% OFF seleccionando la opción de pago en efectivo.",
+            "dues": "6",
+            "discount": "0.85"
+        }
     ]
 }
 

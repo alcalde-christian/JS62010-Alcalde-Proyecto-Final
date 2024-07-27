@@ -15,6 +15,8 @@ header .header-promo {
   color: white;
   text-align: center;
   font-size: 0.8em;
+  overflow: hidden;
+  text-wrap: nowrap;
 }
 header .header-container {
   display: flex;
@@ -415,9 +417,55 @@ body main .cart p {
 }
 body main .checkout {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 70%;
+  margin: 0 15%;
+  padding: 50px 0;
+  gap: 25px;
+}
+body main .checkout .checkout-items {
+  display: flex;
   flex-direction: column;
-  width: 80%;
-  margin: 0 10%;
+  width: 500px;
+  gap: 10px;
+}
+body main .checkout .checkout-items .purchase-list {
+  min-height: 55vh;
+  background-color: white;
+  border: 2px #AE31BF solid;
+  border-radius: 15px;
+}
+body main .checkout .checkout-items .purchase-list .checkout-phone-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px;
+  column-gap: 15px;
+}
+body main .checkout .checkout-items .purchase-list .checkout-phone-container img {
+  width: 50px;
+}
+body main .checkout .checkout-items .purchase-list .checkout-phone-container .checkout-phone-name {
+  width: 50%;
+  text-align: left;
+}
+body main .checkout .checkout-items .purchase-list .checkout-phone-container .checkout-phone-price {
+  width: 40%;
+  float: right;
+  text-align: left;
+}
+body main .checkout .checkout-items .subtotal-container {
+  display: flex;
+  justify-content: end;
+}
+body main .checkout .checkout-payment {
+  width: 500px;
+}
+body main .checkout .checkout-payment form {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
 }
 body .main-dark {
   background-color: #282828;

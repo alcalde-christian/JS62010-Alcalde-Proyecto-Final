@@ -287,9 +287,71 @@ body {
 
         .checkout {
             display: flex;
-            flex-direction: column;
-            width: 80%;
-            margin: 0 10%;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 70%;
+            margin: 0 15%;
+            padding: 50px 0;
+            gap: 25px;
+
+            .checkout-items {
+                display: flex;
+                flex-direction: column;
+                width: 500px;
+                gap: 10px;
+
+                .purchase-list {
+                    // overflow-y: auto;
+                    min-height: 55vh;
+                    // max-height: 55vh;
+                    background-color: $back-card;
+                    border: 2px $main-color solid;
+                    border-radius: 15px;
+
+                    .checkout-phone-container {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        margin: 15px;
+                        column-gap: 15px;
+                        
+                        img {
+                            width: 50px;
+                        }
+
+                        // p {
+                        //     // width: 30%;
+                        //     text-align: left;
+                        // }
+
+                        .checkout-phone-name {
+                            width: 50%;
+                            text-align: left;
+                        }
+
+                        .checkout-phone-price {
+                            width: 40%;
+                            float: right;
+                            text-align: left;
+                        }
+                    }
+                }
+
+                .subtotal-container {
+                    display: flex;
+                    justify-content: end;
+                }
+            }
+
+            .checkout-payment {
+                width: 500px;
+
+                form {
+                    display: flex;
+                    flex-direction: column;
+                    text-align: right;
+                }
+            }
         }
     }
 

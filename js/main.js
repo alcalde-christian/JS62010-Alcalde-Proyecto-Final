@@ -101,6 +101,13 @@ const footerElement = document.getElementById("footer")
 
 
 /////////////////////////////////////////////////////////////////////////////////////////
+
+// Elementos del checkout
+
+const purchaseList = document.getElementById("purchase-list")
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
 // Declaración de funciones
 /////////////////////////////////////////////////////////////////////////////////////////
 
@@ -236,12 +243,83 @@ const updateCart = () => {
         })
         cartBody.innerHTML += `
             <p class="total-cost">Precio final: $ ${totalCost}</p>
-            <input id="buy-btn" class="buy-btn" type="button" value="Ir a pagar" ></input>
+            <input id="checkout-btn" class="checkout-btn" type="button" value="Ir a pagar" ></input>
         `
-        endPurchase()
+        displayCheckoutList()
+        // endPurchase()
     }
     deleteItem()
 }
+
+const displayCheckoutList = () => {
+    const checkoutBtn = document.getElementById("checkout-btn")
+    const subtotal = document.getElementById("subtotal")
+
+    checkoutBtn.addEventListener("click", (e) => {
+        const phoneList = document.getElementById("phone-list")
+        phoneList.style.display = "none"
+        e.target.parentElement.parentElement.parentElement.style.display = "none"
+        toggleSearchIcon.style.display = "none"
+        cartBtn.style.display = "none"
+
+        purchaseList.innerHTML = ""
+        totalCost = 0
+
+        cart.forEach (el => {
+            purchaseList.innerHTML += `
+                <div class="checkout-phone-container">
+                    <img src=${el.img} alt="Foto de ${el.name}">
+                    <p class="checkout-phone-name">${el.name}</p>
+                    <p class="checkout-phone-price">$ ${el.price}</p>
+                </div>
+            `
+            totalCost = totalCost + el.price
+            subtotal.innerText = `Subtotal: $ ${totalCost}`
+        })
+    })
+
+}
+
+const continueShopping = () => {
+    const continueBtn = document.getElementById("continue-btn")
+    const checkout = document.getElementById("checkout")
+    continueBtn.addEventListener("click", () => {
+        const phoneList = document.getElementById("phone-list")
+        phoneList.style.display = "flex"
+        toggleSearchIcon.style.display = "block"
+        cartBtn.style.display = "block"
+        checkout.classList.add("checkout-show")
+    })
+}
+
+continueShopping()
+
+const updatePaymentFields = () => {
+    const optionCash = document.getElementById("option-cash")
+    const optionCard = document.getElementById("option-card")
+    const duesQty = document.getElementById("dues-qty")
+    const duesAmmount = document.getElementById("dues-ammount")
+    const discountField = document.getElementById("discount-field")
+
+    optionCash.addEventListener("change", () => {
+        if (optionCash.checked) {
+            duesQty.disabled = true
+            duesAmmount.disabled = true
+            discountField.disabled = false
+        }
+    })
+
+    optionCard.addEventListener("change", () => {
+        if (optionCard.checked) {
+            duesQty.disabled = false
+            duesAmmount.disabled = false
+            discountField.disabled = true
+        }
+    })
+}
+
+updatePaymentFields()
+
 
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -302,6 +380,8 @@ const endPurchase = () => {
         cartQty.innerText = cart.length
         e.target.parentElement.parentElement.parentElement.style.display = "none"
     })
+
+    
 }
 
 

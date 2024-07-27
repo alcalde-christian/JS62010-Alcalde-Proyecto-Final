@@ -12,6 +12,8 @@ header {
         color: white;
         text-align: center;
         font-size: 0.8em;
+        overflow: hidden;
+        text-wrap: nowrap;
     }
 
     .header-container {

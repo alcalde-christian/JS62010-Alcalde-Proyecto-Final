@@ -112,7 +112,7 @@
         <div id="cart-btn" class="cart">
             <p id="cart-qty"></p>
             <p>
-                &#128722;
+                <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>
             </p>
         </div>
 
@@ -122,20 +122,44 @@
                 <p>
                     Detalle de su compra:
                 </p>
-                <div class="purchase-list">
+                <div class="purchase-list" id="purchase-list">
                     <!-- Aquí se cargan los teléfonos a pagar -->
                 </div>
                 <div class="subtotal-container">
-                    <p>
-                        Subtotal:
-                    </p>
-                    <p>
-    
+                    <p id="subtotal">
+                        <!-- Aquí se carga el subtotal de la compra -->
                     </p>
                 </div>
             </div>
             <div class="checkout-payment">
+                <form action="">
+                    <label for="">Nombre completo</label>
+                    <input type="text" name="" id="">
+                    <label for="">Correo electrónico</label>
+                    <input type="text" name="" id="">
+                    <label for="">Método de pago</label>
+                    <div>
+                        <input type="radio" name="payment-method" id="option-cash">Efectivo
+                        <input type="radio" name="payment-method" id="option-card">Tarjeta
+                    </div>
+                    <label for="">Cantidad de cuotas</label>
+                    <select name="" id="dues-qty">
+                        <option value="1">1 cuota</option>
+                        <option value="3">3 cuotas</option>
+                        <option value="6">6 cuotas</option>
+                    </select>
+                    <label for="">Valor de la cuota</label>
+                    <input type="text" name="" id="dues-ammount">
+                    <label for="">Descuento</label>
+                    <input type="text" id="discount-field">
+                    <label for="">Total</label>
+                    <input type="text">
+                    <div>
+                        <input type="button" value="Confirmar compra" id="buy-btn">
+                        <input type="button" value="Continuar comprando" id="continue-btn">
+                    </div>
 
+                </form>
             </div>
         </div>
     </main>

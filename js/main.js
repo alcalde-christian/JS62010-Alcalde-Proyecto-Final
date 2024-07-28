@@ -150,10 +150,21 @@ const addToCart = () => {
         el.addEventListener("click", (e) => {
             // Método find para determinar qué teléfono agregar al carrito
             const phoneToAdd = phones.find ( (el) => el.name === e.target.parentElement.parentElement.children[1].innerText)
-            // Método push para agregar el teléfono seleccionado
-            cart.push(phoneToAdd)
+            const isPhoneAlreadyAdded = cart.find ( (el) => el.name === phoneToAdd.name)
+
+            if (isPhoneAlreadyAdded) {
+                phoneToAdd.qty++
+            } else {
+                phoneToAdd.qty = 1
+                cart.push(phoneToAdd)
+            }
+            console.log (phoneToAdd)
+            console.log (isPhoneAlreadyAdded)
+
+            cartQty.innerText = cartBadgeTotalizer()
+            
             // Actualización del ícono de carrito
-            cartQty.innerText = cart.length
+            // cartQty.innerText = cart.length
             // Almacenamiento en localStorage
             localStorage.setItem("cart", JSON.stringify(cart))
 
@@ -234,12 +245,13 @@ const updateCart = () => {
             cartBody.innerHTML += `
                 <div class="cart-phone-container">
                     <img src=${el.img} alt="Foto de ${el.name}">
+                    <p>${el.qty}x</p>
                     <p>${el.name}</p>
                     <p>$ ${el.price}</p>
                     <input class="delete-btn" type="button" value="Eliminar"></input>
                 </div>
             `
-            totalCost = totalCost + el.price
+            totalCost = totalCost + el.price * el.qty
         })
         cartBody.innerHTML += `
             <p class="total-cost">Precio final: $ ${totalCost}</p>
@@ -336,13 +348,23 @@ const deleteItem = () => {
         // Evento click para cada botón del array
         el.addEventListener("click", e => {
             // Método find para determinar qué teléfono eliminar del carrito
-            const phoneToDelete = cart.find((el) => el.name === e.target.parentElement.children[1].innerText)
+            const phoneToDelete = cart.find((el) => el.name === e.target.parentElement.children[2].innerText)
+            if (phoneToDelete.qty >= 2) {
+                phoneToDelete.qty--
+            } else {
+                const phoneToDeleteIndex = cart.indexOf(phoneToDelete)
+                cart.splice (phoneToDeleteIndex, 1)
+            }
+            console.log (phoneToDelete)
             // Método indexOf para determinar en qué posición del array se encuentra el teléfono a eliminar
-            const phoneToDeleteIndex = cart.indexOf(phoneToDelete)
+                // const phoneToDeleteIndex = cart.indexOf(phoneToDelete)
             // Método splice para eliminar el teléfono seleccionado
-            cart.splice (phoneToDeleteIndex, 1)
+                // cart.splice (phoneToDeleteIndex, 1)
+
+            cartQty.innerText = cartBadgeTotalizer()
+
             // Actualización del ícono de carrito
-            cartQty.innerText = cart.length
+            // cartQty.innerText = cart.length
             // Actualización del localStorage
             localStorage.setItem("cart", JSON.stringify(cart))
 
@@ -362,6 +384,17 @@ const deleteItem = () => {
         })
     })
 }
+
+const cartBadgeTotalizer = () => {
+    let totalQty = 0
+    cart.forEach (el => {
+        console.log (el.qty)
+        totalQty = totalQty + el.qty
+        console.log (totalQty)
+    })
+    return (totalQty)
+}
+
 
 
 /////////////////////////////////////////////////////////////////////////////////////////

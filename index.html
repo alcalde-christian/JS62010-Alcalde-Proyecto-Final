@@ -19,8 +19,9 @@
 <body>
     <header id="header">
         <div class="header-promo">
-            <p>
-                ¡Sólo por HOY! 6 cuotas sin interés en todos los productos o 15% OFF seleccionando la opción de pago en efectivo.
+            <p id="header-promo-text">
+                <!-- Aquí se carga la promoción del momento -->
+                <!-- ¡Sólo por HOY! 6 cuotas sin interés en todos los productos o 15% OFF seleccionando la opción de pago en efectivo. -->
             </p>
         </div>
         <div class="header-container">
@@ -47,77 +48,84 @@
             <div class="double-bounce2"></div>
         </div> -->
 
-        <!-- Modal de información normalmente oculto -->
-        <div id="info-modal" class="info-modal">
-            <div id="info-container" class="info-container">
-                <div class="info-header">
-                    <span id="close-button" class="close-button">&times;</span>
-                </div>
-                <div class="info-body">
-                    <div class="info-body-icons">
-                        <div>
-                            <i class="fa-solid fa-mobile-screen fa-2xl" style="color: #ae31bf;"></i>
+        <!-- Sección de modales -->
+        <section>
+            <!-- Modal de información normalmente oculto -->
+            <div id="info-modal" class="info-modal">
+                <div id="info-container" class="info-container">
+                    <div class="info-header">
+                        <span id="close-button" class="close-button">&times;</span>
+                    </div>
+                    <div class="info-body">
+                        <div class="info-body-icons">
+                            <div>
+                                <i class="fa-solid fa-mobile-screen fa-2xl" style="color: #ae31bf;"></i>
+                            </div>
+                            <div>
+                                <i class="fa-solid fa-display fa-2xl" style="color: #ae31bf;"></i>
+                            </div>
+                            <div>
+                                <i class="fa-solid fa-memory fa-2xl" style="color: #ae31bf;"></i>
+                            </div>
+                            <div>
+                                <i class="fa-solid fa-database fa-2xl" style="color: #ae31bf;"></i>
+                            </div>
+                            <div>
+                                <i class="fa-solid fa-camera fa-2xl" style="color: #ae31bf;"></i>
+                            </div>
                         </div>
-                        <div>
-                            <i class="fa-solid fa-display fa-2xl" style="color: #ae31bf;"></i>
-                        </div>
-                        <div>
-                            <i class="fa-solid fa-memory fa-2xl" style="color: #ae31bf;"></i>
-                        </div>
-                        <div>
-                            <i class="fa-solid fa-database fa-2xl" style="color: #ae31bf;"></i>
-                        </div>
-                        <div>
-                            <i class="fa-solid fa-camera fa-2xl" style="color: #ae31bf;"></i>
+                        <div class="info-body-data">
+                            <!-- Aquí se carga la información de cada teléfono -->
+                            <p id="data-name"></p>
+                            <p id="data-screen"></p>
+                            <p id="data-ram"></p>
+                            <p id="data-storage"></p>
+                            <p id="data-camera"></p>
                         </div>
                     </div>
-                    <div class="info-body-data">
-                        <!-- Aquí se carga la información de cada teléfono -->
-                        <p id="data-name"></p>
-                        <p id="data-screen"></p>
-                        <p id="data-ram"></p>
-                        <p id="data-storage"></p>
-                        <p id="data-camera"></p>
+                    <div class="info-footer"></div>
+                </div>
+            </div>
+
+            <!-- Modal del carrito normalmente oculto -->
+            <div id="cart-modal" class="cart-modal">
+                <div id="cart-container" class="cart-container">
+                    <div class="cart-header">
+                        <span id="close-button" class="close-button">&times;</span>
                     </div>
+                    <div id="cart-body" class="cart-body">
+                        <!-- Aquí se cargan los teléfonos del carrito -->
+                    </div>
+                    <div class="cart-footer"></div>
                 </div>
-                <div class="info-footer"></div>
             </div>
-        </div>
+        </section>
 
-        <!-- Modal del carrito normalmente oculto -->
-        <div id="cart-modal" class="cart-modal">
-            <div id="cart-container" class="cart-container">
-                <div class="cart-header">
-                    <span id="close-button" class="close-button">&times;</span>
-                </div>
-                <div id="cart-body" class="cart-body">
-                    <!-- Aquí se cargan los teléfonos del carrito -->
-                </div>
-                <div class="cart-footer"></div>
+        <!-- Sección principal de la página -->
+        <section id="main-page">
+            <!-- Buscador de teléfonos -->
+            <div class="phone-search" id="phone-search">
+                <input type="text" name="" id="search-text" class="search-text">
+                <input type="button" value="Buscar / Limpiar" id="search-btn" class="search-btn">
             </div>
-        </div>
-    
-        <!-- Buscador de teléfonos -->
-        <div class="phone-search" id="phone-search">
-            <input type="text" name="" id="search-text" class="search-text">
-            <input type="button" value="Buscar / Limpiar" id="search-btn" class="search-btn">
-        </div>
 
-        <!-- Listado de teléfonos -->
-        <div id="phone-list" class="phone-list">
-            <!-- Aquí se cargan los teléfonos a través del código JS -->
-        </div>
+            <!-- Listado de teléfonos -->
+            <div id="phone-list" class="phone-list">
+                <!-- Aquí se cargan los teléfonos a través del código JS -->
+            </div>
 
-        <!-- Botón que da acceso al carrito ubicado en la esquina inferior derecha -->
-        <div id="cart-btn" class="cart">
-            <p id="cart-qty"></p>
-            <p>
-                <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>
-            </p>
-        </div>
+            <!-- Botón que da acceso al carrito ubicado en la esquina inferior derecha -->
+            <div id="cart-btn" class="cart">
+                <p id="cart-qty"></p>
+                <p>
+                    <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>
+                </p>
+            </div>
+        </section>
+
 
         <!-- Sección de pago, normalmente oculta -->
-        <div class="checkout" id="checkout">
+        <section class="checkout" id="checkout">
             <div class="checkout-items">
                 <p>
                     Detalle de su compra:
@@ -132,28 +140,34 @@
                 </div>
             </div>
             <div class="checkout-payment">
-                <form action="">
-                    <label for="">Nombre completo</label>
-                    <input type="text" name="" id="">
-                    <label for="">Correo electrónico</label>
-                    <input type="text" name="" id="">
-                    <label for="">Método de pago</label>
+                <form action="" id="checkout-form">
+
+                    <label for="checkout-name">Nombre completo</label>
+                    <input type="text" name="checkout-name" id="checkout-name">
+
+                    <label for="checkout-mail">Correo electrónico</label>
+                    <input type="text" name="checkout-mail" id="checkout-mail">
+
+                    <label>Método de pago</label>
                     <div>
                         <input type="radio" name="payment-method" id="option-cash">Efectivo
                         <input type="radio" name="payment-method" id="option-card">Tarjeta
                     </div>
-                    <label for="">Cantidad de cuotas</label>
+
+                    <label for="dues-qty">Cantidad de cuotas</label>
                     <select name="" id="dues-qty">
                         <option value="1">1 cuota</option>
-                        <option value="3">3 cuotas</option>
-                        <option value="6">6 cuotas</option>
                     </select>
-                    <label for="">Valor de la cuota</label>
-                    <input type="text" name="" id="dues-ammount">
-                    <label for="">Descuento</label>
-                    <input type="text" id="discount-field">
-                    <label for="">Total</label>
-                    <input type="text">
+
+                    <label for="dues-ammount">Valor de la cuota</label>
+                    <input type="text" name="dues-ammount" id="dues-ammount">
+
+                    <label for="discount-field">Descuento</label>
+                    <input type="text" name="discount-field" id="discount-field">
+
+                    <label for="checkout-total">Total</label>
+                    <input type="text" name="checkout-total" id="checkout-total">
+
                     <div>
                         <input type="button" value="Confirmar compra" id="buy-btn">
                         <input type="button" value="Continuar comprando" id="continue-btn">
@@ -161,7 +175,7 @@
 
                 </form>
             </div>
-        </div>
+        </section>
     </main>
     <footer id="footer">
         <p>

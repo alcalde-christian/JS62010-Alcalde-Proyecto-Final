@@ -21,8 +21,9 @@ Entrega final:
     - Finalizar compra
 - Modo nocturno OK
 - Buscador de teléfonos OK
-- Agrupar teléfonos iguales en carrito
-- Proceso de compra en HTML separado
+- Agrupar teléfonos iguales en carrito OK
+- Proceso de compra en HTML separado NO
 - Stocks
+- Promo en JSON
 
 - Ver localStorage.clear

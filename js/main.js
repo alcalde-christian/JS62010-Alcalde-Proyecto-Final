@@ -158,8 +158,7 @@ const addToCart = () => {
                 phoneToAdd.qty = 1
                 cart.push(phoneToAdd)
             }
-            console.log (phoneToAdd)
-            console.log (isPhoneAlreadyAdded)
+
 
             cartQty.innerText = cartBadgeTotalizer()
             
@@ -227,7 +226,7 @@ const displayCart = () => {
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
-// Función que actualiza el carrito (cuando se hace click en el ícono o el eliminar)
+// Función que actualiza el carrito (cuando se hace click en el ícono o en eliminar)
 
 const updateCart = () => {
     // Reset del carrito para evitar duplicaciones
@@ -245,7 +244,7 @@ const updateCart = () => {
             cartBody.innerHTML += `
                 <div class="cart-phone-container">
                     <img src=${el.img} alt="Foto de ${el.name}">
-                    <p>${el.qty}x</p>
+                    <p class="cart-phone-qty">${el.qty}x</p>
                     <p>${el.name}</p>
                     <p>$ ${el.price}</p>
                     <input class="delete-btn" type="button" value="Eliminar"></input>
@@ -257,10 +256,13 @@ const updateCart = () => {
             <p class="total-cost">Precio final: $ ${totalCost}</p>
             <input id="checkout-btn" class="checkout-btn" type="button" value="Ir a pagar" ></input>
         `
+        deleteItem()
+
         displayCheckoutList()
         // endPurchase()
     }
-    deleteItem()
+
+    // deleteItem()
 }
 
 const displayCheckoutList = () => {
@@ -268,11 +270,10 @@ const displayCheckoutList = () => {
     const subtotal = document.getElementById("subtotal")
 
     checkoutBtn.addEventListener("click", (e) => {
-        const phoneList = document.getElementById("phone-list")
-        phoneList.style.display = "none"
+        const mainPage = document.getElementById("main-page")
+        mainPage.style.display = "none"
         e.target.parentElement.parentElement.parentElement.style.display = "none"
         toggleSearchIcon.style.display = "none"
-        cartBtn.style.display = "none"
 
         purchaseList.innerHTML = ""
         totalCost = 0
@@ -281,42 +282,41 @@ const displayCheckoutList = () => {
             purchaseList.innerHTML += `
                 <div class="checkout-phone-container">
                     <img src=${el.img} alt="Foto de ${el.name}">
+                    <p>${el.qty}x</p>
                     <p class="checkout-phone-name">${el.name}</p>
                     <p class="checkout-phone-price">$ ${el.price}</p>
                 </div>
             `
-            totalCost = totalCost + el.price
+            totalCost = totalCost + el.price * el.qty
             subtotal.innerText = `Subtotal: $ ${totalCost}`
         })
     })
-
 }
 
-const continueShopping = () => {
+const hideCheckoutList = () => {
     const continueBtn = document.getElementById("continue-btn")
     const checkout = document.getElementById("checkout")
+
     continueBtn.addEventListener("click", () => {
-        const phoneList = document.getElementById("phone-list")
-        phoneList.style.display = "flex"
+        const mainPage = document.getElementById("main-page")
+        mainPage.style.display = "block"
         toggleSearchIcon.style.display = "block"
-        cartBtn.style.display = "block"
-        checkout.classList.add("checkout-show")
     })
 }
 
-continueShopping()
+hideCheckoutList()
 
 const updatePaymentFields = () => {
     const optionCash = document.getElementById("option-cash")
     const optionCard = document.getElementById("option-card")
     const duesQty = document.getElementById("dues-qty")
-    const duesAmmount = document.getElementById("dues-ammount")
+    const duesAmount = document.getElementById("dues-amount")
     const discountField = document.getElementById("discount-field")
 
     optionCash.addEventListener("change", () => {
         if (optionCash.checked) {
             duesQty.disabled = true
-            duesAmmount.disabled = true
+            duesAmount.disabled = true
             discountField.disabled = false
         }
     })
@@ -324,7 +324,7 @@ const updatePaymentFields = () => {
     optionCard.addEventListener("change", () => {
         if (optionCard.checked) {
             duesQty.disabled = false
-            duesAmmount.disabled = false
+            duesAmount.disabled = false
             discountField.disabled = true
         }
     })
@@ -349,13 +349,14 @@ const deleteItem = () => {
         el.addEventListener("click", e => {
             // Método find para determinar qué teléfono eliminar del carrito
             const phoneToDelete = cart.find((el) => el.name === e.target.parentElement.children[2].innerText)
+
             if (phoneToDelete.qty >= 2) {
                 phoneToDelete.qty--
             } else {
                 const phoneToDeleteIndex = cart.indexOf(phoneToDelete)
                 cart.splice (phoneToDeleteIndex, 1)
             }
-            console.log (phoneToDelete)
+
             // Método indexOf para determinar en qué posición del array se encuentra el teléfono a eliminar
                 // const phoneToDeleteIndex = cart.indexOf(phoneToDelete)
             // Método splice para eliminar el teléfono seleccionado
@@ -388,9 +389,7 @@ const deleteItem = () => {
 const cartBadgeTotalizer = () => {
     let totalQty = 0
     cart.forEach (el => {
-        console.log (el.qty)
         totalQty = totalQty + el.qty
-        console.log (totalQty)
     })
     return (totalQty)
 }
@@ -443,6 +442,31 @@ const createCards = (phones) => {
     addToCart()
 }
 
+const loadPromo = (promo) => {
+    const headerPromoText = document.getElementById("header-promo-text")
+    headerPromoText.innerText = promo.text
+
+    const discountField = document.getElementById("discount-field")
+    discountField.value = 100 - promo.discount * 100 + "%"
+
+    const duesQty = document.getElementById("dues-qty")
+    for (i = 2; i <= promo.dues; i++) {
+        duesQty.innerHTML += `
+            <option value=${i}>${i} cuotas</option>
+        `
+    }
+}
+
+const updateDuesValue = () => {
+    const duesQty = document.getElementById("dues-qty")
+    const duesAmount= document.getElementById("dues-amount")  
+    duesQty.addEventListener("change", () => {
+        duesAmount.value = (totalCost / duesQty.value).toFixed(2)
+    })
+}
+
+updateDuesValue()
+
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
@@ -463,6 +487,8 @@ const obtainJSONData = async () => {
             el.img,
             el.stock
         ))
+
+        loadPromo(data.promo[0])
 
         createCards(phones)
 
@@ -605,7 +631,7 @@ toggleDarkMode()
 
 document.addEventListener("DOMContentLoaded", () => {
     // Actualización del ícono de carrito según datos almacenados en localStorage
-    cartQty.innerText = cart.length
+    cartQty.innerText = cartBadgeTotalizer()
 })
 
 // setTimeout(() => {

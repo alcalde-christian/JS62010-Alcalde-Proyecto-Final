@@ -259,8 +259,13 @@ body main .cart-modal .cart-container .cart-body .cart-phone-container {
 body main .cart-modal .cart-container .cart-body .cart-phone-container img {
   width: 15%;
 }
+body main .cart-modal .cart-container .cart-body .cart-phone-container .cart-phone-qty {
+  width: 4%;
+  padding-right: 0;
+  text-align: right;
+}
 body main .cart-modal .cart-container .cart-body .cart-phone-container p {
-  width: 35%;
+  width: 33%;
   padding: 0 15px;
 }
 body main .cart-modal .cart-container .cart-body .cart-phone-container input {

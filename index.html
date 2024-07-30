@@ -21,7 +21,6 @@
         <div class="header-promo">
             <p id="header-promo-text">
                 <!-- Aquí se carga la promoción del momento -->
-                <!-- ¡Sólo por HOY! 6 cuotas sin interés en todos los productos o 15% OFF seleccionando la opción de pago en efectivo. -->
             </p>
         </div>
         <div class="header-container">
@@ -56,7 +55,7 @@
                     <div class="info-header">
                         <span id="close-button" class="close-button">&times;</span>
                     </div>
-                    <div class="info-body">
+                    <div class="info-body" id="info-body">
                         <div class="info-body-icons">
                             <div>
                                 <i class="fa-solid fa-mobile-screen fa-2xl" style="color: #ae31bf;"></i>
@@ -128,48 +127,49 @@
         <section class="checkout-page" id="checkout-page">
             <div class="checkout">
                 <div class="checkout-items">
-                    <p>
+                    <span>
                         Detalle de su compra:
-                    </p>
+                    </span>
+                    
                     <div class="purchase-list" id="purchase-list">
                         <!-- Aquí se cargan los teléfonos a pagar -->
                     </div>
                     <div class="subtotal-container">
-                        <p id="subtotal">
+                        <span id="subtotal">
                             <!-- Aquí se carga el subtotal de la compra -->
-                        </p>
+                        </span>
                     </div>
                 </div>
                 <div class="checkout-payment">
                     <form action="" id="checkout-form">
+
+                        <label for="checkout-name"><i>Nombre completo</i></label>
+                        <input class="input" type="text" name="checkout-name" id="checkout-name" required>
+
+                        <label for="checkout-mail"><i>Correo electrónico</i></label>
+                        <input class="input" type="text" name="checkout-mail" id="checkout-mail" required>
     
-                        <label for="checkout-name">Nombre completo</label>
-                        <input type="text" name="checkout-name" id="checkout-name">
-    
-                        <label for="checkout-mail">Correo electrónico</label>
-                        <input type="text" name="checkout-mail" id="checkout-mail">
-    
-                        <label>Método de pago</label>
-                        <div>
-                            <input type="radio" name="payment-method" id="option-cash">Efectivo
-                            <input type="radio" name="payment-method" id="option-card">Tarjeta
+                        <label><i>Método de pago</i></label>
+                        <div class="payment-method">
+                            <input type="radio" name="payment-method" id="option-cash"><span>Efectivo</span>
+                            <input type="radio" name="payment-method" id="option-card"><span>Tarjeta</span>
                         </div>
     
-                        <label for="dues-qty">Cantidad de cuotas</label>
-                        <select name="" id="dues-qty" disabled>
+                        <label for="dues-qty"><i>Cantidad de cuotas</i></label>
+                        <select name="dues-qty" id="dues-qty" disabled>
                             <option value="" disabled selected>Seleccione la cantidad de cuotas</option>
                             <option value="1">1 cuota</option>
                         </select>
     
-                        <label for="details-display" id="details-display-label">Seleccione el método de pago</label>
-                        <input type="text" name="details-display" id="details-display" readonly>
+                        <label for="details-display" id="details-display-label"><i>Seleccione el método de pago</i></label>
+                        <input class="input" type="text" name="details-display" id="details-display" readonly>
     
-                        <label for="checkout-total">Total</label>
-                        <input type="text" name="checkout-total" id="checkout-total" readonly>
+                        <label for="checkout-total"><i>Total</i></label>
+                        <input class="input" type="text" name="checkout-total" id="checkout-total" readonly>
     
-                        <div>
-                            <input type="button" value="Confirmar compra" id="buy-btn">
-                            <input type="button" value="Continuar comprando" id="continue-btn">
+                        <div class="checkout-buttons-container">
+                            <input class="checkout-button submit" type="submit" value="Confirmar compra" id="buy-btn">
+                            <input class="checkout-button" type="button" value="Continuar comprando" id="continue-btn">
                         </div>
     
                     </form>

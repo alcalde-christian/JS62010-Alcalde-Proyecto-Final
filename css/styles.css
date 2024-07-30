@@ -24,7 +24,7 @@ header .header-container {
   height: 85px;
   margin: 0 10%;
   background-image: url("../img/bg.png");
-  box-shadow: 3px 3px 6px grey;
+  box-shadow: 3px 3px 6px black;
   border-radius: 0 0 10px 10px;
 }
 header .header-container .header-logo {
@@ -69,7 +69,7 @@ footer p {
   width: 80%;
   margin: 0 10%;
   border-radius: 10px 10px 0 0;
-  box-shadow: 3px 3px 6px gray;
+  box-shadow: 3px 3px 6px black;
   background-image: url("../img/bg.png");
   font-size: 12px;
 }
@@ -200,6 +200,9 @@ body main .info-modal .info-container .info-body .info-body-data {
   width: 70%;
   gap: 15px;
 }
+body main .info-modal .info-container .info-body-dark {
+  background-color: #cccccc;
+}
 body main .info-modal .info-container .info-footer {
   margin: 0 25%;
   width: 50%;
@@ -276,7 +279,7 @@ body main .cart-modal .cart-container .cart-body .cart-phone-container input {
   color: #AE31BF;
   border: 1px solid #AE31BF;
   border-radius: 5px;
-  background-color: white;
+  background-color: rgba(0, 0, 0, 0);
 }
 body main .cart-modal .cart-container .cart-body .cart-phone-container input:hover {
   background-color: #f4dff5;
@@ -291,7 +294,7 @@ body main .cart-modal .cart-container .cart-body input {
   color: #AE31BF;
   border: 1px solid #AE31BF;
   border-radius: 5px;
-  background-color: white;
+  background-color: rgba(0, 0, 0, 0);
 }
 body main .cart-modal .cart-container .cart-body input:hover {
   background-color: #f4dff5;
@@ -301,6 +304,9 @@ body main .cart-modal .cart-container .cart-body input:hover {
 body main .cart-modal .cart-container .cart-body .total-cost {
   padding: 25px 0;
   text-align: center;
+}
+body main .cart-modal .cart-container .cart-body-dark {
+  background-color: #282828;
 }
 body main .cart-modal .cart-container .cart-footer {
   height: 10px;
@@ -329,7 +335,7 @@ body main .main-page .phone-search .search-btn {
   color: #AE31BF;
   border: 1px solid #AE31BF;
   border-radius: 5px;
-  background-color: white;
+  background-color: rgba(0, 0, 0, 0);
   border: none;
   background-color: #f6f6f6;
 }
@@ -351,14 +357,15 @@ body main .main-page .phone-list {
   gap: 25px;
 }
 body main .main-page .phone-list .phone-box {
-  background-color: white;
   display: flex;
   flex-direction: column;
   text-align: center;
   width: 250px;
   border: 2px solid #AE31BF;
   border-radius: 10px;
-  box-shadow: 5px 5px 10px gray;
+  background-color: white;
+  transition: background-color 0.5s ease;
+  box-shadow: 5px 5px 15px black;
 }
 body main .main-page .phone-list .phone-box:hover {
   border: 2px solid #FBF407;
@@ -388,12 +395,15 @@ body main .main-page .phone-list .phone-box .buttons-container input {
   color: #AE31BF;
   border: 1px solid #AE31BF;
   border-radius: 5px;
-  background-color: white;
+  background-color: rgba(0, 0, 0, 0);
 }
 body main .main-page .phone-list .phone-box .buttons-container input:hover {
   background-color: #f4dff5;
   transition: background-color ease 0.5s;
   cursor: pointer;
+}
+body main .main-page .phone-list .phone-box-dark {
+  background-color: #cccccc;
 }
 body main .main-page .cart {
   position: fixed;
@@ -404,7 +414,7 @@ body main .main-page .cart {
   border-radius: 50%;
   border: 2px solid #AE31BF;
   background-color: #FBF407;
-  box-shadow: 5px 5px 10px grey;
+  box-shadow: 5px 5px 15px black;
 }
 body main .main-page .cart:hover {
   cursor: pointer;
@@ -420,63 +430,147 @@ body main .main-page .cart p {
   justify-content: center;
   align-items: center;
 }
-body main .checkout {
+body main .checkout-page {
+  display: none;
+}
+body main .checkout-page .checkout {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 70%;
-  margin: 0 15%;
+  margin: 0 10%;
   padding: 50px 0;
   gap: 25px;
 }
-body main .checkout .checkout-items {
+body main .checkout-page .checkout .checkout-items {
   display: flex;
   flex-direction: column;
-  width: 500px;
+  width: 400px;
   gap: 10px;
 }
-body main .checkout .checkout-items .purchase-list {
+body main .checkout-page .checkout .checkout-items .purchase-list {
   min-height: 55vh;
   background-color: white;
+  transition: background-color 0.5s ease;
   border: 2px #AE31BF solid;
   border-radius: 15px;
 }
-body main .checkout .checkout-items .purchase-list .checkout-phone-container {
+body main .checkout-page .checkout .checkout-items .purchase-list .checkout-phone-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 15px;
   column-gap: 15px;
 }
-body main .checkout .checkout-items .purchase-list .checkout-phone-container img {
+body main .checkout-page .checkout .checkout-items .purchase-list .checkout-phone-container img {
   width: 50px;
 }
-body main .checkout .checkout-items .purchase-list .checkout-phone-container .checkout-phone-name {
+body main .checkout-page .checkout .checkout-items .purchase-list .checkout-phone-container .checkout-phone-name {
   width: 50%;
   text-align: left;
 }
-body main .checkout .checkout-items .purchase-list .checkout-phone-container .checkout-phone-price {
+body main .checkout-page .checkout .checkout-items .purchase-list .checkout-phone-container .checkout-phone-price {
   width: 40%;
   float: right;
   text-align: left;
 }
-body main .checkout .checkout-items .subtotal-container {
+body main .checkout-page .checkout .checkout-items .purchase-list-dark {
+  background-color: #cccccc;
+}
+body main .checkout-page .checkout .checkout-items .subtotal-container {
   display: flex;
   justify-content: end;
 }
-body main .checkout .checkout-payment {
-  width: 500px;
+body main .checkout-page .checkout .checkout-items .subtotal-container span {
+  margin-right: 10px;
+  color: black;
+  transition: color 0.5s ease;
 }
-body main .checkout .checkout-payment form {
+body main .checkout-page .checkout .checkout-items .subtotal-container .dark-mode {
+  color: white;
+}
+body main .checkout-page .checkout .checkout-items span {
+  margin-left: 10px;
+  color: black;
+  transition: color 0.5s ease;
+}
+body main .checkout-page .checkout .checkout-items .dark-mode {
+  color: white;
+}
+body main .checkout-page .checkout .checkout-payment {
+  width: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+body main .checkout-page .checkout .checkout-payment form {
   display: flex;
   flex-direction: column;
+  width: 100%;
   text-align: right;
 }
-body main .checkout .checkout-payment form select {
-  text-align: right;
+body main .checkout-page .checkout .checkout-payment form label {
+  font-size: 14px;
+  color: #AE31BF;
+  padding-top: 12px;
 }
-body main .checkout .checkout-payment form input {
+body main .checkout-page .checkout .checkout-payment form .payment-method {
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+  font-size: 16px;
+}
+body main .checkout-page .checkout .checkout-payment form .payment-method span {
+  color: black;
+  transition: color 0.5s ease;
+}
+body main .checkout-page .checkout .checkout-payment form .payment-method .dark-mode {
+  color: white;
+}
+body main .checkout-page .checkout .checkout-payment form select {
   text-align: right;
+  padding: 5px;
+  font-size: 14px;
+  border: none;
+  background-color: #f4dff5;
+  transition: all 0.3s ease;
+}
+body main .checkout-page .checkout .checkout-payment form select:focus {
+  outline: none;
+}
+body main .checkout-page .checkout .checkout-payment form input {
+  text-align: right;
+  font-size: 18px;
+  border: none;
+  border-bottom: 1px solid #AE31BF;
+  outline: none;
+  background-color: #f6f6f6;
+  transition: background-color 0.5s ease;
+}
+body main .checkout-page .checkout .checkout-payment form .input-dark {
+  background-color: #282828;
+  color: white;
+}
+body main .checkout-page .checkout .checkout-payment form .checkout-buttons-container .checkout-button {
+  font-weight: bold;
+  color: #AE31BF;
+  border: 1px solid #AE31BF;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0);
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 14px;
+}
+body main .checkout-page .checkout .checkout-payment form .checkout-buttons-container .checkout-button:hover {
+  background-color: #f4dff5;
+  transition: background-color ease 0.5s;
+  cursor: pointer;
+}
+body main .checkout-page .checkout .checkout-payment form .checkout-buttons-container .submit {
+  background-color: #AE31BF;
+  color: white;
+}
+body main .checkout-page .checkout .checkout-payment form .checkout-buttons-container .submit:hover {
+  background-color: #8b008b;
 }
 body .main-dark {
   background-color: #282828;

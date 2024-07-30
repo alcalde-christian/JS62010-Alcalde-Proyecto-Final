@@ -82,6 +82,10 @@ body {
                         gap: 15px;
                     }
                 }
+
+                .info-body-dark {
+                    background-color: $back-card-dark;
+                }
         
                 .info-footer {
                     margin: 0 25%;
@@ -167,6 +171,10 @@ body {
                     }
                 }
 
+                .cart-body-dark {
+                    background-color: $back-color-dark;
+                }
+
                 .cart-footer {
                     @include modal-footer-styles;
                 }
@@ -224,13 +232,14 @@ body {
                 gap: 25px;
     
                 .phone-box {
-                    background-color: $back-card;
                     @include flex-col;
                     text-align: center;
                     width: 250px;
                     border: 2px solid $main-color;
                     border-radius: 10px;
-                    box-shadow: 5px 5px 10px gray;
+                    background-color: $back-card;
+                    transition: background-color 0.5s ease;
+                    box-shadow: 5px 5px 15px black;
     
                     &:hover {
                         border: 2px solid $sub-color;
@@ -267,6 +276,10 @@ body {
                         }
                     }
                 }
+
+                .phone-box-dark {
+                    background-color: $back-card-dark;
+                }
             }
 
             // Estilos del badge del carrito ////////////////////////////////////////////
@@ -279,7 +292,7 @@ body {
                 border-radius: 50%;
                 border: 2px solid $main-color;
                 background-color: $sub-color;
-                box-shadow: 5px 5px 10px grey;
+                box-shadow: 5px 5px 15px black;
     
                 &:hover {
                     cursor: pointer;
@@ -304,76 +317,165 @@ body {
         /////////////////////////////////////////////////////////////////////////////////
         // Estilos de section.checkout //////////////////////////////////////////////////
 
-        .checkout {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            width: 70%;
-            margin: 0 15%;
-            padding: 50px 0;
-            gap: 25px;
-
-            .checkout-items {
-                @include flex-col;
-                width: 500px;
-                gap: 10px;
-
-                .purchase-list {
-                    // overflow-y: auto;
-                    min-height: 55vh;
-                    // max-height: 55vh;
-                    background-color: $back-card;
-                    border: 2px $main-color solid;
-                    border-radius: 15px;
-
-                    .checkout-phone-container {
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
-                        margin: 15px;
-                        column-gap: 15px;
-                        
-                        img {
-                            width: 50px;
-                        }
-
-                        // p {
-                        //     // width: 30%;
-                        //     text-align: left;
-                        // }
-
-                        .checkout-phone-name {
-                            width: 50%;
-                            text-align: left;
-                        }
-
-                        .checkout-phone-price {
-                            width: 40%;
-                            float: right;
-                            text-align: left;
-                        }
-                    }
-                }
-
-                .subtotal-container {
-                    display: flex;
-                    justify-content: end;
-                }
-            }
-
-            .checkout-payment {
-                width: 500px;
-
-                form {
+        .checkout-page {
+            display: none;
+            
+            .checkout {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                margin: 0 10%;
+                padding: 50px 0;
+                gap: 25px;
+    
+                .checkout-items {
                     @include flex-col;
-                    text-align: right;
-
-                    select {
-                        text-align: right;
+                    width: 400px;
+                    gap: 10px;
+    
+                    .purchase-list {
+                        // overflow-y: auto;
+                        min-height: 55vh;
+                        // max-height: 55vh;
+                        background-color: $back-card;
+                        transition: background-color 0.5s ease;
+                        border: 2px $main-color solid;
+                        border-radius: 15px;
+    
+                        .checkout-phone-container {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            margin: 15px;
+                            column-gap: 15px;
+                            
+                            img {
+                                width: 50px;
+                            }
+    
+                            .checkout-phone-name {
+                                width: 50%;
+                                text-align: left;
+                            }
+    
+                            .checkout-phone-price {
+                                width: 40%;
+                                float: right;
+                                text-align: left;
+                            }
+                        }
                     }
-
-                    input {
+    
+                    .purchase-list-dark {
+                        background-color: $back-card-dark;
+                    }
+    
+                    .subtotal-container {
+                        display: flex;
+                        justify-content: end;
+    
+                        span {
+                            margin-right: 10px;
+                            @include text-in-light-mode;
+                        }
+    
+                        .dark-mode {
+                            color: $contrast-color;
+                        }
+                    }
+    
+                    span {
+                        margin-left: 10px;
+                        @include text-in-light-mode;
+                    }
+    
+                    .dark-mode {
+                        color: $contrast-color;
+                    }
+                }
+    
+                .checkout-payment {
+                    width: 350px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: end;
+    
+                    form {
+                        @include flex-col;
+                        width: 100%;
                         text-align: right;
+    
+                        label {
+                            font-size: 14px;
+                            color: $main-color;
+                            padding-top: 12px;
+                        }
+    
+                        .payment-method {
+                            display: flex;
+                            justify-content: end;
+                            gap: 10px;
+                            font-size: 16px;
+    
+                            span {
+                                @include text-in-light-mode;
+                            }
+    
+                            .dark-mode {
+                                color: $contrast-color;
+                            }
+                        }
+    
+                        select {
+                            text-align: right;
+                            padding: 5px;
+                            font-size: 14px;
+                            border: none;
+                            background-color: $main-color-light;
+                            transition: all 0.3s ease;
+    
+                            &:focus {
+                                outline: none;
+                            }
+                        }
+    
+                        input {
+                            text-align: right;
+                            font-size: 18px;
+                            border: none;
+                            border-bottom: 1px solid $main-color;
+                            outline: none;
+                            background-color: $back-color;
+                            transition: background-color 0.5s ease;
+                        }
+    
+                        .input-dark {
+                            background-color: $back-color-dark;
+                            color: $contrast-color
+                        }
+    
+                        .checkout-buttons-container {
+    
+                            .checkout-button {
+                                @include button-styles;
+                                margin-top: 10px;
+                                padding: 10px;
+                                font-size: 14px;
+        
+                                &:hover {
+                                    @include button-styles-hover;
+                                }
+                            }
+        
+                            .submit {
+                                background-color: $main-color;
+                                color: $contrast-color;
+    
+                                &:hover {
+                                    background-color: $main-color-dark;
+                                }
+                            }
+                        }
                     }
                 }
             }

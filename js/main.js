@@ -91,6 +91,10 @@ const darkModeBtn = document.getElementById("toggle-dark")
 const headerElement = document.getElementById("header")
 const mainElement = document.getElementById("main")
 const footerElement = document.getElementById("footer")
+const infoBody = document.getElementById("info-body")
+const phoneBoxes = document.getElementsByClassName("phone-box")
+const inputAreas = document.getElementsByClassName("input")
+const spanTexts = document.getElementsByTagName("span")
 
 
 // Elementos del checkout
@@ -346,6 +350,8 @@ const displayCheckoutList = () => {
         hideCheckoutList()
 
         updateCheckoutCosts()
+
+        endPurchase()
     })
 }
 
@@ -356,11 +362,10 @@ const displayCheckoutList = () => {
 
 const hideCheckoutList = () => {
     const continueBtn = document.getElementById("continue-btn")
+    const mainPage = document.getElementById("main-page")
     const checkoutPage = document.getElementById("checkout-page")
 
     continueBtn.addEventListener("click", () => {
-        const mainPage = document.getElementById("main-page")
-
         toggleVisibility([mainPage, toggleSearchIcon],[checkoutPage])
     })
 }
@@ -461,18 +466,32 @@ const cartBadgeTotalizer = () => {
 
 const endPurchase = () => {
     const buyBtn = document.getElementById("buy-btn")
+    const checkoutName = document.getElementById("checkout-name")
+    const mainPage = document.getElementById("main-page")
+    const checkoutPage = document.getElementById("checkout-page")
     // Evento click para el botón "terminar compra"
     buyBtn.addEventListener ("click", (e) => {
+
+        e.preventDefault()
+
+        Swal.fire({
+            icon: "success",
+            title: `¡Muchas gracias por tu compra ${checkoutName.value}!`,
+            text: "A la brevedad nos estaremos contactando con vos",
+            background: "#f6f6f6",
+            confirmButtonColor: "#AE31BF",
+            footer: `Compraste ${cartBadgeTotalizer()} artículos`
+          });
+
         // Método splice para vaciar el carrito 
         cart.splice(0, cart.length)
         // Limpieza del localStorage
-        localStorage.clear("cart")
+        localStorage.removeItem("cart")
         // Actualización del ícono de carrito
         cartQty.innerText = cart.length
-        e.target.parentElement.parentElement.parentElement.style.display = "none"
-    })
 
-    
+        toggleVisibility([mainPage, toggleSearchIcon],[checkoutPage])
+    })    
 }
 
 
@@ -632,18 +651,42 @@ const toggleDarkMode = () => {
     if (darkMode == null) {
         localStorage.setItem("dark", "false")
     } else if (darkMode == "true") {
+        const arrayPhoneBoxes = Array.from(phoneBoxes)
+        const arrayInputAreas = Array.from(inputAreas)
+        const arraySpanTexts = Array.from(spanTexts)
+        arrayPhoneBoxes.forEach (el => el.classList.toggle("phone-box-dark"))
+        arrayInputAreas.forEach (el => el.classList.toggle("input-dark"))
+        arraySpanTexts.forEach (el => el.classList.toggle("dark-mode"))
+
         headerElement.classList.toggle("header-dark")
         mainElement.classList.toggle("main-dark")
         footerElement.classList.toggle("footer-dark")
+
+        infoBody.classList.toggle("info-body-dark")
+        cartBody.classList.toggle("cart-body-dark")
+
+        purchaseList.classList.toggle("purchase-list-dark")
         darkModeBtn.innerHTML = `
         <i class="fa-solid fa-sun" style="color: #000000;"></i>
         `
     }
 
     darkModeBtn.addEventListener ("click", () => {
+        const arrayPhoneBoxes = Array.from(phoneBoxes)
+        const arrayInputAreas = Array.from(inputAreas)
+        const arraySpanTexts = Array.from(spanTexts)
+        arrayPhoneBoxes.forEach (el => el.classList.toggle("phone-box-dark"))
+        arrayInputAreas.forEach (el => el.classList.toggle("input-dark"))
+        arraySpanTexts.forEach (el => el.classList.toggle("dark-mode"))
+
         headerElement.classList.toggle("header-dark")
         mainElement.classList.toggle("main-dark")
         footerElement.classList.toggle("footer-dark")
+
+        infoBody.classList.toggle("info-body-dark")
+        cartBody.classList.toggle("cart-body-dark")
+
+        purchaseList.classList.toggle("purchase-list-dark")
         if (headerElement.classList.contains("header-dark")) {
             localStorage.setItem("dark", "true")
             darkModeBtn.innerHTML = `

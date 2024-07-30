@@ -1,7 +1,30 @@
-$back-color: #f6f6f6;
-$back-color-dark: #282828;
-$back-promo: black;
-$back-card: white;
-$main-color: #AE31BF;
-$main-color-light: #f4dff5;
-$sub-color: #FBF407;
+// Variables del proyecto
+/////////////////////////////////////////////////////////////////////////////////////////
+
+
+// Color de fondo normal y modo oscuro
+    $back-color: #f6f6f6;
+    $back-color-dark: #282828;
+
+// Color de fondo del header de promociones
+    $back-promo: black;
+
+// Color de fondo de las "cards" normal y oscuro
+    $back-card: white;
+    $back-card-dark: #cccccc;
+    // $back-card-dark: #a2a2a2;
+    // Falta el modo oscuro
+
+// Color principal de la página. Versiones "light" y "dark" para :hovers
+    $main-color: #AE31BF;
+    $main-color-light: #f4dff5;
+    $main-color-dark: #8b008b;
+
+// Color secundario de la página
+    $sub-color: #FBF407;
+
+// Color de contraste
+    $contrast-color: white;
+
+// Color de fondo para botones
+    $button-color: rgba(0,0,0,0)

@@ -18,8 +18,8 @@ Entrega final:
     - Error en JSON OK
     - Agregar teléfono al carrito OK
     - Eliminar teléfono del carrito OK
-    - Finalizar compra
-- Modo nocturno OK - FALTA TERMINAR
+    - Finalizar compra OK
+- Modo nocturno OK - FALTA TERMINAR - SE avanzó
 - Buscador de teléfonos OK
 - Agrupar teléfonos iguales en carrito OK
 - Proceso de compra en HTML separado NO

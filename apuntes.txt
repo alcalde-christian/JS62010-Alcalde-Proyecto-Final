@@ -19,11 +19,10 @@ Entrega final:
     - Agregar teléfono al carrito OK
     - Eliminar teléfono del carrito OK
     - Finalizar compra
-- Modo nocturno OK
+- Modo nocturno OK - FALTA TERMINAR
 - Buscador de teléfonos OK
 - Agrupar teléfonos iguales en carrito OK
 - Proceso de compra en HTML separado NO
 - Stocks
-- Promo en JSON
-
+- Promo en JSON OK
 - Ver localStorage.clear

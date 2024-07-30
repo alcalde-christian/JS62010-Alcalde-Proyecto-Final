@@ -3,8 +3,7 @@
 @import "../animations/keyframes";
 
 body {
-    display: flex;
-    flex-direction: column;
+    @include flex-col;
     min-height: 100vh;
 
     main {
@@ -13,22 +12,22 @@ body {
         transition: background-color 0.5s ease;
 
         .spinner {
-            width: 100%;
-            height: 100%;
             position: fixed;
             top: 0;
             z-index: 1;
+            width: 100%;
+            height: 100%;
             background-color: $main-color-light;
 
             .double-bounce1, .double-bounce2 {
+                position: absolute;
+                top: 50%;
+                left: 50%;
                 width: 40px;
                 height: 40px;
                 border-radius: 50%;
                 background-color: $main-color;
                 opacity: 0.6;
-                position: absolute;
-                top: 50%;
-                left: 50%;
                 animation: sk-bounce 2.0s infinite ease-in-out;
             }
 
@@ -174,122 +173,136 @@ body {
             }
         }
 
-        .phone-search {
-            display: flex;
-            justify-content: center;
-            column-gap: 15px;
-            position: relative;
-            top: -50px;
-            transition: transform 1s ease;
 
-            .search-text {
-                padding: 2px 10px;
-                border-radius: 25px;
-                border: 2px solid $main-color;
+        /////////////////////////////////////////////////////////////////////////////////
+        // Estilos de section.main-page /////////////////////////////////////////////////
 
-                &:focus {
-                    outline: none;
+        .main-page {
+
+            // Estilos del buscador de teléfonos ////////////////////////////////////////
+            .phone-search {
+                display: flex;
+                justify-content: center;
+                column-gap: 15px;
+                position: relative;
+                top: -50px;
+                transition: transform 1s ease;
+    
+                .search-text {
+                    padding: 2px 10px;
+                    border-radius: 25px;
+                    border: 2px solid $main-color;
+    
+                    &:focus {
+                        outline: none;
+                    }
+                }
+    
+                .search-btn {
+                    @include button-styles;
+                    border: none;
+                    background-color: $back-color;
+    
+                    &:hover {
+                        @include button-styles-hover;
+                    }
                 }
             }
-
-            .search-btn {
-                @include button-styles;
-                border: none;
-                background-color: $back-color;
-
-                &:hover {
-                    @include button-styles-hover;
-                }
+    
+            .show {
+                transform: translateY(50px);
             }
-        }
 
-        .show {
-            transform: translateY(50px);
-        }
-
-        .phone-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            width: 70%;
-            margin: 0 15%;
-            padding: 50px 0;
-            gap: 25px;
-
-            .phone-box {
-                background-color: $back-card;
-                @include flex-col;
-                text-align: center;
-                width: 250px;
-                border: 2px solid $main-color;
-                border-radius: 10px;
-                box-shadow: 5px 5px 10px gray;
-
-                &:hover {
-                    border: 2px solid $sub-color;
-                    transition: border ease 0.3s;
-                }
-
-                img {
-                    width: 100%;
-                    margin-top: 25px;
-                }
-
-                .box-text {
-                    font-weight: bold;
-                    color: $main-color;
-                    margin-top: 25px;
-                }
-
-                .box-price {
-                    margin-top: 25px;
-                }
-
-                .buttons-container {
+            // Estilos del listado de teléfonos (cards) /////////////////////////////////
+            .phone-list {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                width: 70%;
+                margin: 0 15%;
+                padding: 50px 0;
+                gap: 25px;
+    
+                .phone-box {
+                    background-color: $back-card;
                     @include flex-col;
-                    margin: 15px 0;
-
-                    input {
-                        margin: 5px 15%;
-                        padding: 5px;
-                        @include button-styles;
-        
-                        &:hover {
-                            @include button-styles-hover;
+                    text-align: center;
+                    width: 250px;
+                    border: 2px solid $main-color;
+                    border-radius: 10px;
+                    box-shadow: 5px 5px 10px gray;
+    
+                    &:hover {
+                        border: 2px solid $sub-color;
+                        transition: border ease 0.3s;
+                    }
+    
+                    img {
+                        width: 100%;
+                        margin-top: 25px;
+                    }
+    
+                    .box-text {
+                        font-weight: bold;
+                        color: $main-color;
+                        margin-top: 25px;
+                    }
+    
+                    .box-price {
+                        margin-top: 25px;
+                    }
+    
+                    .buttons-container {
+                        @include flex-col;
+                        margin: 15px 0;
+    
+                        input {
+                            margin: 5px 15%;
+                            padding: 5px;
+                            @include button-styles;
+            
+                            &:hover {
+                                @include button-styles-hover;
+                            }
                         }
                     }
                 }
             }
+
+            // Estilos del badge del carrito ////////////////////////////////////////////
+            .cart {
+                position: fixed;
+                bottom: 25px;
+                right: 25px;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                border: 2px solid $main-color;
+                background-color: $sub-color;
+                box-shadow: 5px 5px 10px grey;
+    
+                &:hover {
+                    cursor: pointer;
+                }
+    
+                &.jump {
+                    animation: jump 1.5s ease;
+                }
+    
+                p {
+                    display: flex;
+                    width: 100%;
+                    height: 40%;
+                    margin: 5% 0;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
         }
 
-        .cart {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: 2px solid $main-color;
-            background-color: $sub-color;
-            box-shadow: 5px 5px 10px grey;
 
-            &:hover {
-                cursor: pointer;
-            }
-
-            &.jump {
-                animation: jump 1.5s ease;
-            }
-
-            p {
-                display: flex;
-                width: 100%;
-                height: 40%;
-                margin: 5% 0;
-                justify-content: center;
-                align-items: center;
-            }
-        }
+        /////////////////////////////////////////////////////////////////////////////////
+        // Estilos de section.checkout //////////////////////////////////////////////////
 
         .checkout {
             display: flex;
@@ -301,8 +314,7 @@ body {
             gap: 25px;
 
             .checkout-items {
-                display: flex;
-                flex-direction: column;
+                @include flex-col;
                 width: 500px;
                 gap: 10px;
 
@@ -353,9 +365,16 @@ body {
                 width: 500px;
 
                 form {
-                    display: flex;
-                    flex-direction: column;
+                    @include flex-col;
                     text-align: right;
+
+                    select {
+                        text-align: right;
+                    }
+
+                    input {
+                        text-align: right;
+                    }
                 }
             }
         }

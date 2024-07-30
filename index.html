@@ -102,7 +102,7 @@
         </section>
 
         <!-- Sección principal de la página -->
-        <section id="main-page">
+        <section id="main-page" class="main-page">
             <!-- Buscador de teléfonos -->
             <div class="phone-search" id="phone-search">
                 <input type="text" name="" id="search-text" class="search-text">
@@ -125,55 +125,55 @@
 
 
         <!-- Sección de pago, normalmente oculta -->
-        <section class="checkout" id="checkout">
-            <div class="checkout-items">
-                <p>
-                    Detalle de su compra:
-                </p>
-                <div class="purchase-list" id="purchase-list">
-                    <!-- Aquí se cargan los teléfonos a pagar -->
-                </div>
-                <div class="subtotal-container">
-                    <p id="subtotal">
-                        <!-- Aquí se carga el subtotal de la compra -->
+        <section class="checkout-page" id="checkout-page">
+            <div class="checkout">
+                <div class="checkout-items">
+                    <p>
+                        Detalle de su compra:
                     </p>
+                    <div class="purchase-list" id="purchase-list">
+                        <!-- Aquí se cargan los teléfonos a pagar -->
+                    </div>
+                    <div class="subtotal-container">
+                        <p id="subtotal">
+                            <!-- Aquí se carga el subtotal de la compra -->
+                        </p>
+                    </div>
                 </div>
-            </div>
-            <div class="checkout-payment">
-                <form action="" id="checkout-form">
-
-                    <label for="checkout-name">Nombre completo</label>
-                    <input type="text" name="checkout-name" id="checkout-name">
-
-                    <label for="checkout-mail">Correo electrónico</label>
-                    <input type="text" name="checkout-mail" id="checkout-mail">
-
-                    <label>Método de pago</label>
-                    <div>
-                        <input type="radio" name="payment-method" id="option-cash">Efectivo
-                        <input type="radio" name="payment-method" id="option-card">Tarjeta
-                    </div>
-
-                    <label for="dues-qty">Cantidad de cuotas</label>
-                    <select name="" id="dues-qty">
-                        <option value="1">1 cuota</option>
-                    </select>
-
-                    <label for="dues-ammount">Valor de la cuota</label>
-                    <input type="text" name="dues-ammount" id="dues-ammount">
-
-                    <label for="discount-field">Descuento</label>
-                    <input type="text" name="discount-field" id="discount-field">
-
-                    <label for="checkout-total">Total</label>
-                    <input type="text" name="checkout-total" id="checkout-total">
-
-                    <div>
-                        <input type="button" value="Confirmar compra" id="buy-btn">
-                        <input type="button" value="Continuar comprando" id="continue-btn">
-                    </div>
-
-                </form>
+                <div class="checkout-payment">
+                    <form action="" id="checkout-form">
+    
+                        <label for="checkout-name">Nombre completo</label>
+                        <input type="text" name="checkout-name" id="checkout-name">
+    
+                        <label for="checkout-mail">Correo electrónico</label>
+                        <input type="text" name="checkout-mail" id="checkout-mail">
+    
+                        <label>Método de pago</label>
+                        <div>
+                            <input type="radio" name="payment-method" id="option-cash">Efectivo
+                            <input type="radio" name="payment-method" id="option-card">Tarjeta
+                        </div>
+    
+                        <label for="dues-qty">Cantidad de cuotas</label>
+                        <select name="" id="dues-qty" disabled>
+                            <option value="" disabled selected>Seleccione la cantidad de cuotas</option>
+                            <option value="1">1 cuota</option>
+                        </select>
+    
+                        <label for="details-display" id="details-display-label">Seleccione el método de pago</label>
+                        <input type="text" name="details-display" id="details-display" readonly>
+    
+                        <label for="checkout-total">Total</label>
+                        <input type="text" name="checkout-total" id="checkout-total" readonly>
+    
+                        <div>
+                            <input type="button" value="Confirmar compra" id="buy-btn">
+                            <input type="button" value="Continuar comprando" id="continue-btn">
+                        </div>
+    
+                    </form>
+                </div>
             </div>
         </section>
     </main>

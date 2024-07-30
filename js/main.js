@@ -41,15 +41,16 @@ const cart = JSON.parse(localStorage.getItem("cart")) || []
 let totalCost = 0
 
 
-/////////////////////////////////////////////////////////////////////////////////////////
+// Variable del descuento
+
+let discount = 0
+
 
 // Variables para el funcionamiento del spinner
 
 let timeOutCompleted = false
 let pageLoaded = false
 
-
-/////////////////////////////////////////////////////////////////////////////////////////
 
 // Elementos del modal "info"
 
@@ -60,15 +61,11 @@ const phoneStorage = document.getElementById("data-storage")
 const phoneCamera = document.getElementById("data-camera")
 
 
-/////////////////////////////////////////////////////////////////////////////////////////
-
 // Elementos del botón de carrito
 
 const cartQty = document.getElementById("cart-qty")
 const cartBtn = document.getElementById("cart-btn")
 
-
-/////////////////////////////////////////////////////////////////////////////////////////
 
 // Elementos de modales
 
@@ -78,8 +75,6 @@ const cartModal = document.getElementById("cart-modal")
 const cartBody = document.getElementById("cart-body")
 
 
-/////////////////////////////////////////////////////////////////////////////////////////
-
 // Elementos del buscador
 
 const searchText = document.getElementById("search-text")
@@ -87,8 +82,6 @@ const searchBtn = document.getElementById("search-btn")
 const toggleSearchIcon = document.getElementById("toggle-search")
 const phoneSearchDiv = document.getElementById("phone-search")
 
-
-/////////////////////////////////////////////////////////////////////////////////////////
 
 // Elementos del modo oscuro
 
@@ -99,8 +92,6 @@ const headerElement = document.getElementById("header")
 const mainElement = document.getElementById("main")
 const footerElement = document.getElementById("footer")
 
-
-/////////////////////////////////////////////////////////////////////////////////////////
 
 // Elementos del checkout
 
@@ -137,6 +128,29 @@ const displayInfo = () => {
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
+// Función que cierra el modal cuando se hace click en "X"
+
+const closeModal = () => {
+    // Creación de HTML Collection de botones y transformación en array
+    const closeBtn = document.getElementsByClassName("close-button")
+    const arrayCloseBtn = Array.from(closeBtn)
+
+    // Método forEach para cada botón del array
+    arrayCloseBtn.forEach (el => {
+        // Evento click para cada botón del array
+        el.addEventListener("click", (e) => {
+            e.target.parentElement.parentElement.parentElement.style.display="none"
+            // Reset del carrito al cerrar el mismo para evitar duplicaciones
+            if (e.target.parentElement.parentElement.children[1].id == "cart-body") {
+                e.target.parentElement.parentElement.children[1].innerHTML = ""
+            }
+        })
+    })
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
 // Función que agrega el teléfono seleccionado al carrito
 
 const addToCart = () => {
@@ -159,15 +173,12 @@ const addToCart = () => {
                 cart.push(phoneToAdd)
             }
 
-
+            // Actualización del ícono de carrito
             cartQty.innerText = cartBadgeTotalizer()
             
-            // Actualización del ícono de carrito
-            // cartQty.innerText = cart.length
             // Almacenamiento en localStorage
             localStorage.setItem("cart", JSON.stringify(cart))
 
-            // Código provisto por chatGPT para animar el ícono del carrito
             cartBtn.classList.add("jump")
             setTimeout(() => {
                 cartBtn.classList.remove("jump");
@@ -183,29 +194,6 @@ const addToCart = () => {
                 timer: 1500,
                 timerProgressBar: true,
             });
-        })
-    })
-}
-
-
-/////////////////////////////////////////////////////////////////////////////////////////
-
-// Función que cierra el modal cuando se hace click en "X"
-
-const closeModal = () => {
-    // Creación de HTML Collection de botones y transformación en array
-    const closeBtn = document.getElementsByClassName("close-button")
-    const arrayCloseBtn = Array.from(closeBtn)
-
-    // Método forEach para cada botón del array
-    arrayCloseBtn.forEach (el => {
-        // Evento click para cada botón del array
-        el.addEventListener("click", (e) => {
-            e.target.parentElement.parentElement.parentElement.style.display="none"
-            // Reset del carrito al cerrar el mismo para evitar duplicaciones
-            if (e.target.parentElement.parentElement.children[1].id == "cart-body") {
-                e.target.parentElement.parentElement.children[1].innerHTML = ""
-            }
         })
     })
 }
@@ -254,84 +242,13 @@ const updateCart = () => {
         })
         cartBody.innerHTML += `
             <p class="total-cost">Precio final: $ ${totalCost}</p>
-            <input id="checkout-btn" class="checkout-btn" type="button" value="Ir a pagar" ></input>
+            <input id="checkout-btn" class="close-button checkout-btn" type="button" value="Ir a pagar" ></input>
         `
         deleteItem()
 
         displayCheckoutList()
-        // endPurchase()
     }
-
-    // deleteItem()
 }
-
-const displayCheckoutList = () => {
-    const checkoutBtn = document.getElementById("checkout-btn")
-    const subtotal = document.getElementById("subtotal")
-
-    checkoutBtn.addEventListener("click", (e) => {
-        const mainPage = document.getElementById("main-page")
-        mainPage.style.display = "none"
-        e.target.parentElement.parentElement.parentElement.style.display = "none"
-        toggleSearchIcon.style.display = "none"
-
-        purchaseList.innerHTML = ""
-        totalCost = 0
-
-        cart.forEach (el => {
-            purchaseList.innerHTML += `
-                <div class="checkout-phone-container">
-                    <img src=${el.img} alt="Foto de ${el.name}">
-                    <p>${el.qty}x</p>
-                    <p class="checkout-phone-name">${el.name}</p>
-                    <p class="checkout-phone-price">$ ${el.price}</p>
-                </div>
-            `
-            totalCost = totalCost + el.price * el.qty
-            subtotal.innerText = `Subtotal: $ ${totalCost}`
-        })
-    })
-}
-
-const hideCheckoutList = () => {
-    const continueBtn = document.getElementById("continue-btn")
-    const checkout = document.getElementById("checkout")
-
-    continueBtn.addEventListener("click", () => {
-        const mainPage = document.getElementById("main-page")
-        mainPage.style.display = "block"
-        toggleSearchIcon.style.display = "block"
-    })
-}
-
-hideCheckoutList()
-
-const updatePaymentFields = () => {
-    const optionCash = document.getElementById("option-cash")
-    const optionCard = document.getElementById("option-card")
-    const duesQty = document.getElementById("dues-qty")
-    const duesAmount = document.getElementById("dues-amount")
-    const discountField = document.getElementById("discount-field")
-
-    optionCash.addEventListener("change", () => {
-        if (optionCash.checked) {
-            duesQty.disabled = true
-            duesAmount.disabled = true
-            discountField.disabled = false
-        }
-    })
-
-    optionCard.addEventListener("change", () => {
-        if (optionCard.checked) {
-            duesQty.disabled = false
-            duesAmount.disabled = false
-            discountField.disabled = true
-        }
-    })
-}
-
-updatePaymentFields()
-
 
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -353,19 +270,15 @@ const deleteItem = () => {
             if (phoneToDelete.qty >= 2) {
                 phoneToDelete.qty--
             } else {
+                // Método indexOf para determinar en qué posición del array se encuentra el teléfono a eliminar
                 const phoneToDeleteIndex = cart.indexOf(phoneToDelete)
+                // Método splice para eliminar el teléfono seleccionado
                 cart.splice (phoneToDeleteIndex, 1)
             }
 
-            // Método indexOf para determinar en qué posición del array se encuentra el teléfono a eliminar
-                // const phoneToDeleteIndex = cart.indexOf(phoneToDelete)
-            // Método splice para eliminar el teléfono seleccionado
-                // cart.splice (phoneToDeleteIndex, 1)
-
+            // Actualización del ícono de carrito
             cartQty.innerText = cartBadgeTotalizer()
 
-            // Actualización del ícono de carrito
-            // cartQty.innerText = cart.length
             // Actualización del localStorage
             localStorage.setItem("cart", JSON.stringify(cart))
 
@@ -386,6 +299,153 @@ const deleteItem = () => {
     })
 }
 
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+// Función reutilizable para mostrar / ocultar elementos
+
+const toggleVisibility = (elementsToShow, elementsToHide) => {
+    elementsToShow.forEach(el => el.style.display = "block")
+    elementsToHide.forEach(el => el.style.display = "none")
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+// Función que muestra la pantalla de checkout y muestra el carrito final
+
+const displayCheckoutList = () => {
+    const checkoutBtn = document.getElementById("checkout-btn")
+    const subtotal = document.getElementById("subtotal")
+
+    checkoutBtn.addEventListener("click", () => {
+        const checkoutPage = document.getElementById("checkout-page")
+        const mainPage = document.getElementById("main-page")
+
+        toggleVisibility([checkoutPage], [mainPage, toggleSearchIcon, cartModal])
+
+        purchaseList.innerHTML = ""
+        totalCost = 0
+
+        cart.forEach (el => {
+            purchaseList.innerHTML += `
+                <div class="checkout-phone-container">
+                    <img src=${el.img} alt="Foto de ${el.name}">
+                    <p>${el.qty}x</p>
+                    <p class="checkout-phone-name">${el.name}</p>
+                    <p class="checkout-phone-price">$ ${el.price}</p>
+                </div>
+            `
+            totalCost = totalCost + el.price * el.qty
+        })
+
+        subtotal.innerText = `Subtotal: $ ${totalCost}`
+
+        configCheckoutForm()
+
+        hideCheckoutList()
+
+        updateCheckoutCosts()
+    })
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+// Función que oculta la pantalla de checkout y vuelve a la sección principal
+
+const hideCheckoutList = () => {
+    const continueBtn = document.getElementById("continue-btn")
+    const checkoutPage = document.getElementById("checkout-page")
+
+    continueBtn.addEventListener("click", () => {
+        const mainPage = document.getElementById("main-page")
+
+        toggleVisibility([mainPage, toggleSearchIcon],[checkoutPage])
+    })
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+// Función que configura el checkout según las opciones seleccionadas
+
+const configCheckoutForm = () => {
+    const optionCash = document.getElementById("option-cash")
+    const optionCard = document.getElementById("option-card")
+    const duesQty = document.getElementById("dues-qty")
+    const detailsDisplayLabel = document.getElementById("details-display-label")
+    const detailsDisplay = document.getElementById("details-display")
+
+    optionCash.addEventListener("change", () => {
+        if (optionCash.checked) {
+            duesQty.disabled = true
+            detailsDisplayLabel.innerText = "Descuento"
+            detailsDisplay.value = 100 - 100 * discount + "%"
+        }
+
+        updateCheckoutCosts()
+    })
+
+    optionCard.addEventListener("change", () => {
+        if (optionCard.checked) {
+            duesQty.disabled = false
+            detailsDisplayLabel.innerText = "Valor de la cuota"
+
+            updateDuesAmount()
+        }
+
+        updateCheckoutCosts()
+    })
+
+    duesQty.addEventListener("change", () => {
+        if (optionCard.checked) {
+            updateDuesAmount()
+        }
+    })
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+// Función que actualiza los valores totales y de cuota
+
+const updateCheckoutCosts = () => {
+    const optionCash = document.getElementById("option-cash")
+    const optionCard = document.getElementById("option-card")
+    const duesQty = document.getElementById("dues-qty")
+    const detailsDisplay = document.getElementById("details-display")
+    const checkoutTotal = document.getElementById("checkout-total")
+
+    if (optionCash.checked) {
+        checkoutTotal.value = totalCost * discount
+    } else if (optionCard.checked) {
+        detailsDisplay.value = (totalCost / (duesQty.value || 1)).toFixed(2)
+        checkoutTotal.value = totalCost
+    }
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+// Función que actualiza sólo los valores de cuota
+
+const updateDuesAmount = () => {
+    const duesQty = document.getElementById("dues-qty")
+    const detailsDisplay = document.getElementById("details-display")
+
+    if (duesQty.value > 0) {
+        detailsDisplay.value = (totalCost / duesQty.value).toFixed(2)
+    } else {
+        detailsDisplay.value = ""
+    }
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+// Función que actualiza el número que se muestra en el ícono del carrito
+
 const cartBadgeTotalizer = () => {
     let totalQty = 0
     cart.forEach (el => {
@@ -393,7 +453,6 @@ const cartBadgeTotalizer = () => {
     })
     return (totalQty)
 }
-
 
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -442,12 +501,16 @@ const createCards = (phones) => {
     addToCart()
 }
 
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+// Función que trae las promociones y configura el DOM
+
 const loadPromo = (promo) => {
     const headerPromoText = document.getElementById("header-promo-text")
     headerPromoText.innerText = promo.text
 
-    const discountField = document.getElementById("discount-field")
-    discountField.value = 100 - promo.discount * 100 + "%"
+    discount = promo.discount
 
     const duesQty = document.getElementById("dues-qty")
     for (i = 2; i <= promo.dues; i++) {
@@ -456,16 +519,6 @@ const loadPromo = (promo) => {
         `
     }
 }
-
-const updateDuesValue = () => {
-    const duesQty = document.getElementById("dues-qty")
-    const duesAmount= document.getElementById("dues-amount")  
-    duesQty.addEventListener("change", () => {
-        duesAmount.value = (totalCost / duesQty.value).toFixed(2)
-    })
-}
-
-updateDuesValue()
 
 
 /////////////////////////////////////////////////////////////////////////////////////////

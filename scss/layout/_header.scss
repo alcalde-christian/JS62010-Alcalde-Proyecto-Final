@@ -22,7 +22,8 @@ header {
         height: 85px;
         margin: 0 10%;
         background-image: url("../img/bg.png");
-        box-shadow: 3px 3px 6px black;
+        box-shadow: 3px 3px 6px gray;
+        transition: box-shadow 0.5s ease;
         border-radius: 0 0 10px 10px;
 
         .header-logo {
@@ -65,8 +66,4 @@ header {
             }
         }
     }
-}
-
-.header-dark {
-    background-color: $back-color-dark;
 }

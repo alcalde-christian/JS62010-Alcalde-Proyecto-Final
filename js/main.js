@@ -651,43 +651,16 @@ const toggleDarkMode = () => {
     if (darkMode == null) {
         localStorage.setItem("dark", "false")
     } else if (darkMode == "true") {
-        const arrayPhoneBoxes = Array.from(phoneBoxes)
-        const arrayInputAreas = Array.from(inputAreas)
-        const arraySpanTexts = Array.from(spanTexts)
-        arrayPhoneBoxes.forEach (el => el.classList.toggle("phone-box-dark"))
-        arrayInputAreas.forEach (el => el.classList.toggle("input-dark"))
-        arraySpanTexts.forEach (el => el.classList.toggle("dark-mode"))
-
-        headerElement.classList.toggle("header-dark")
-        mainElement.classList.toggle("main-dark")
-        footerElement.classList.toggle("footer-dark")
-
-        infoBody.classList.toggle("info-body-dark")
-        cartBody.classList.toggle("cart-body-dark")
-
-        purchaseList.classList.toggle("purchase-list-dark")
+        document.body.classList.toggle("dark-mode")
         darkModeBtn.innerHTML = `
         <i class="fa-solid fa-sun" style="color: #000000;"></i>
         `
     }
 
     darkModeBtn.addEventListener ("click", () => {
-        const arrayPhoneBoxes = Array.from(phoneBoxes)
-        const arrayInputAreas = Array.from(inputAreas)
-        const arraySpanTexts = Array.from(spanTexts)
-        arrayPhoneBoxes.forEach (el => el.classList.toggle("phone-box-dark"))
-        arrayInputAreas.forEach (el => el.classList.toggle("input-dark"))
-        arraySpanTexts.forEach (el => el.classList.toggle("dark-mode"))
+        document.body.classList.toggle("dark-mode")
 
-        headerElement.classList.toggle("header-dark")
-        mainElement.classList.toggle("main-dark")
-        footerElement.classList.toggle("footer-dark")
-
-        infoBody.classList.toggle("info-body-dark")
-        cartBody.classList.toggle("cart-body-dark")
-
-        purchaseList.classList.toggle("purchase-list-dark")
-        if (headerElement.classList.contains("header-dark")) {
+        if (document.body.classList.contains("dark-mode")) {
             localStorage.setItem("dark", "true")
             darkModeBtn.innerHTML = `
             <i class="fa-solid fa-sun" style="color: #000000;"></i>

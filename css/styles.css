@@ -24,7 +24,8 @@ header .header-container {
   height: 85px;
   margin: 0 10%;
   background-image: url("../img/bg.png");
-  box-shadow: 3px 3px 6px black;
+  box-shadow: 3px 3px 6px gray;
+  transition: box-shadow 0.5s ease;
   border-radius: 0 0 10px 10px;
 }
 header .header-container .header-logo {
@@ -54,10 +55,6 @@ header .header-buttons .dark-button:hover {
   cursor: pointer;
 }
 
-.header-dark {
-  background-color: #282828;
-}
-
 footer {
   height: 50px;
   text-align: center;
@@ -69,13 +66,61 @@ footer p {
   width: 80%;
   margin: 0 10%;
   border-radius: 10px 10px 0 0;
-  box-shadow: 3px 3px 6px black;
+  box-shadow: 3px 3px 6px gray;
+  transition: box-shadow 0.5s ease;
   background-image: url("../img/bg.png");
   font-size: 12px;
 }
 
-.footer-dark {
+footer.dark-mode {
   background-color: #282828;
+}
+
+body.dark-mode header {
+  background-color: #282828;
+}
+body.dark-mode header .header-container {
+  box-shadow: 3px 3px 6px black;
+}
+body.dark-mode main {
+  background-color: #282828;
+}
+body.dark-mode main .info-modal .info-container .info-body {
+  background-color: #282828;
+  color: white;
+}
+body.dark-mode main .cart-modal .cart-container .cart-body {
+  background-color: #282828;
+  color: white;
+}
+body.dark-mode main .main-page .phone-search .search-text {
+  background-color: #cccccc;
+}
+body.dark-mode main .main-page .phone-list .phone-box {
+  background-color: #cccccc;
+  box-shadow: 5px 5px 15px black;
+}
+body.dark-mode main .checkout-page .checkout .checkout-items .purchase-list {
+  background-color: #cccccc;
+}
+body.dark-mode main .checkout-page .checkout .checkout-items .checkout-items-header {
+  color: white;
+}
+body.dark-mode main .checkout-page .checkout .checkout-items .subtotal-container p {
+  color: white;
+}
+body.dark-mode main .checkout-page .checkout .checkout-payment form .payment-method span {
+  color: white;
+}
+body.dark-mode main .checkout-page .checkout .checkout-payment form input {
+  background-color: #282828;
+  color: white;
+}
+body.dark-mode footer {
+  background-color: #282828;
+}
+body.dark-mode footer p {
+  box-shadow: 3px 3px 6px black;
 }
 
 @keyframes animatetop {
@@ -200,9 +245,6 @@ body main .info-modal .info-container .info-body .info-body-data {
   width: 70%;
   gap: 15px;
 }
-body main .info-modal .info-container .info-body-dark {
-  background-color: #cccccc;
-}
 body main .info-modal .info-container .info-footer {
   margin: 0 25%;
   width: 50%;
@@ -305,9 +347,6 @@ body main .cart-modal .cart-container .cart-body .total-cost {
   padding: 25px 0;
   text-align: center;
 }
-body main .cart-modal .cart-container .cart-body-dark {
-  background-color: #282828;
-}
 body main .cart-modal .cart-container .cart-footer {
   height: 10px;
   background-image: url("../img/bg.png");
@@ -326,6 +365,8 @@ body main .main-page .phone-search .search-text {
   padding: 2px 10px;
   border-radius: 25px;
   border: 2px solid #AE31BF;
+  background-color: white;
+  transition: background-color 0.5s ease;
 }
 body main .main-page .phone-search .search-text:focus {
   outline: none;
@@ -337,7 +378,7 @@ body main .main-page .phone-search .search-btn {
   border-radius: 5px;
   background-color: rgba(0, 0, 0, 0);
   border: none;
-  background-color: #f6f6f6;
+  background-color: rgba(0, 0, 0, 0);
 }
 body main .main-page .phone-search .search-btn:hover {
   background-color: #f4dff5;
@@ -365,7 +406,8 @@ body main .main-page .phone-list .phone-box {
   border-radius: 10px;
   background-color: white;
   transition: background-color 0.5s ease;
-  box-shadow: 5px 5px 15px black;
+  box-shadow: 5px 5px 15px gray;
+  transition: box-shadow 0.5s ease;
 }
 body main .main-page .phone-list .phone-box:hover {
   border: 2px solid #FBF407;
@@ -401,9 +443,6 @@ body main .main-page .phone-list .phone-box .buttons-container input:hover {
   background-color: #f4dff5;
   transition: background-color ease 0.5s;
   cursor: pointer;
-}
-body main .main-page .phone-list .phone-box-dark {
-  background-color: #cccccc;
 }
 body main .main-page .cart {
   position: fixed;
@@ -473,9 +512,6 @@ body main .checkout-page .checkout .checkout-items .purchase-list .checkout-phon
   float: right;
   text-align: left;
 }
-body main .checkout-page .checkout .checkout-items .purchase-list-dark {
-  background-color: #cccccc;
-}
 body main .checkout-page .checkout .checkout-items .subtotal-container {
   display: flex;
   justify-content: end;
@@ -485,16 +521,10 @@ body main .checkout-page .checkout .checkout-items .subtotal-container span {
   color: black;
   transition: color 0.5s ease;
 }
-body main .checkout-page .checkout .checkout-items .subtotal-container .dark-mode {
-  color: white;
-}
 body main .checkout-page .checkout .checkout-items span {
   margin-left: 10px;
   color: black;
   transition: color 0.5s ease;
-}
-body main .checkout-page .checkout .checkout-items .dark-mode {
-  color: white;
 }
 body main .checkout-page .checkout .checkout-payment {
   width: 350px;
@@ -523,16 +553,12 @@ body main .checkout-page .checkout .checkout-payment form .payment-method span {
   color: black;
   transition: color 0.5s ease;
 }
-body main .checkout-page .checkout .checkout-payment form .payment-method .dark-mode {
-  color: white;
-}
 body main .checkout-page .checkout .checkout-payment form select {
   text-align: right;
   padding: 5px;
   font-size: 14px;
   border: none;
   background-color: #f4dff5;
-  transition: all 0.3s ease;
 }
 body main .checkout-page .checkout .checkout-payment form select:focus {
   outline: none;
@@ -545,10 +571,6 @@ body main .checkout-page .checkout .checkout-payment form input {
   outline: none;
   background-color: #f6f6f6;
   transition: background-color 0.5s ease;
-}
-body main .checkout-page .checkout .checkout-payment form .input-dark {
-  background-color: #282828;
-  color: white;
 }
 body main .checkout-page .checkout .checkout-payment form .checkout-buttons-container .checkout-button {
   font-weight: bold;
@@ -571,9 +593,6 @@ body main .checkout-page .checkout .checkout-payment form .checkout-buttons-cont
 }
 body main .checkout-page .checkout .checkout-payment form .checkout-buttons-container .submit:hover {
   background-color: #8b008b;
-}
-body .main-dark {
-  background-color: #282828;
 }
 
 /*# sourceMappingURL=styles.css.map */

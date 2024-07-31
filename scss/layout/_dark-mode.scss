@@ -1,0 +1,89 @@
+body.dark-mode {
+    header {
+        background-color: $back-color-dark;
+
+        .header-container {
+            box-shadow: 3px 3px 6px black;
+        }
+    }
+
+    main {
+        background-color: $back-color-dark;
+
+        .info-modal {
+            .info-container {
+                .info-body {
+                    background-color: $back-color-dark;
+                    color: $contrast-color;
+                }
+            }
+        }
+
+        .cart-modal {
+            .cart-container {
+                .cart-body {
+                    background-color: $back-color-dark;
+                    color: $contrast-color;
+                }
+            }
+        }
+
+        .main-page {
+            .phone-search {
+                .search-text {
+                    background-color: $back-card-dark;
+                }
+            }
+
+            .phone-list {
+                .phone-box {
+                    background-color: $back-card-dark;
+                    box-shadow: 5px 5px 15px black;
+                }
+            }
+        }
+
+        .checkout-page {
+            .checkout {
+                .checkout-items {
+                    .purchase-list {
+                        background-color: $back-card-dark;
+                    }
+
+                    .checkout-items-header {
+                        color: $contrast-color;
+                    }
+
+                    .subtotal-container {
+                        p {
+                            color: $contrast-color;
+                        }
+                    }
+                }
+
+                .checkout-payment {
+                    form {
+                        .payment-method {
+                            span {
+                                color: $contrast-color;
+                            }
+                        }
+
+                        input {
+                            background-color: $back-color-dark;
+                            color: $contrast-color;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    footer {
+        background-color: $back-color-dark;
+
+        p {
+            box-shadow: 3px 3px 6px black;
+        }
+    }
+}

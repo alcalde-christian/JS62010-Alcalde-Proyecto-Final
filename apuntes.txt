@@ -26,4 +26,4 @@ Entrega final:
 - Stocks
 - Promo en JSON OK
 - Ver localStorage.clear OK
-- Ver Submit
+- Ver Submit OK

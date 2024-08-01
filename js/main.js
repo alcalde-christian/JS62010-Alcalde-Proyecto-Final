@@ -52,15 +52,6 @@ let timeOutCompleted = false
 let pageLoaded = false
 
 
-// Elementos del modal "info"
-
-const phoneName = document.getElementById("data-name")
-const phoneScreen = document.getElementById("data-screen")
-const phoneRam = document.getElementById("data-ram")
-const phoneStorage = document.getElementById("data-storage")
-const phoneCamera = document.getElementById("data-camera")
-
-
 // Elementos del botón de carrito
 
 const cartQty = document.getElementById("cart-qty")
@@ -69,10 +60,7 @@ const cartBtn = document.getElementById("cart-btn")
 
 // Elementos de modales
 
-const infoModal = document.getElementById("info-modal")
-
 const cartModal = document.getElementById("cart-modal")
-const cartBody = document.getElementById("cart-body")
 
 
 // Elementos del buscador
@@ -80,26 +68,12 @@ const cartBody = document.getElementById("cart-body")
 const searchText = document.getElementById("search-text")
 const searchBtn = document.getElementById("search-btn")
 const toggleSearchIcon = document.getElementById("toggle-search")
-const phoneSearchDiv = document.getElementById("phone-search")
 
 
 // Elementos del modo oscuro
 
 let darkMode = localStorage.getItem("dark")
-
 const darkModeBtn = document.getElementById("toggle-dark")
-const headerElement = document.getElementById("header")
-const mainElement = document.getElementById("main")
-const footerElement = document.getElementById("footer")
-const infoBody = document.getElementById("info-body")
-const phoneBoxes = document.getElementsByClassName("phone-box")
-const inputAreas = document.getElementsByClassName("input")
-const spanTexts = document.getElementsByTagName("span")
-
-
-// Elementos del checkout
-
-const purchaseList = document.getElementById("purchase-list")
 
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -109,13 +83,20 @@ const purchaseList = document.getElementById("purchase-list")
 // Función que muestra la información del teléfono seleccionado en un modal
 
 const displayInfo = () => {
+    // Elementos del modal info
+    const infoModal = document.getElementById("info-modal")
+    const phoneName = document.getElementById("data-name")
+    const phoneScreen = document.getElementById("data-screen")
+    const phoneRam = document.getElementById("data-ram")
+    const phoneStorage = document.getElementById("data-storage")
+    const phoneCamera = document.getElementById("data-camera")
+
     // Creación de HTML Collection de botones y transformación en array
     const infoBtns = document.getElementsByClassName("info-btn")
     const arrayInfoBtns = Array.from(infoBtns)
 
-    // Método forEach para cada botón del array
+    // Método forEach para cada botón del array y listener de eventos "click"
     arrayInfoBtns.forEach (el => {
-        // Evento click para cada botón del array
         el.addEventListener("click", (e) => {
             // Método find para determinar qué información mostrar
             const phoneToShow = phones.find ( (el) => el.name === e.target.parentElement.parentElement.children[1].innerText)
@@ -139,9 +120,8 @@ const closeModal = () => {
     const closeBtn = document.getElementsByClassName("close-button")
     const arrayCloseBtn = Array.from(closeBtn)
 
-    // Método forEach para cada botón del array
+    // Método forEach para cada botón del array y listener de eventos "click"
     arrayCloseBtn.forEach (el => {
-        // Evento click para cada botón del array
         el.addEventListener("click", (e) => {
             e.target.parentElement.parentElement.parentElement.style.display="none"
             // Reset del carrito al cerrar el mismo para evitar duplicaciones
@@ -162,14 +142,14 @@ const addToCart = () => {
     const addBtns = document.getElementsByClassName("add-btn")
     const arrayAddBtns = Array.from(addBtns)
 
-    // Método forEach para cada botón del array
+    // Método forEach para cada botón del array y listener de eventos "click"
     arrayAddBtns.forEach (el => {
-        // Evento click para cada botón del array
         el.addEventListener("click", (e) => {
             // Método find para determinar qué teléfono agregar al carrito
             const phoneToAdd = phones.find ( (el) => el.name === e.target.parentElement.parentElement.children[1].innerText)
             const isPhoneAlreadyAdded = cart.find ( (el) => el.name === phoneToAdd.name)
 
+            // Condicional If para determinar si el teléfono ya está agregado y agruparlos
             if (isPhoneAlreadyAdded) {
                 phoneToAdd.qty++
             } else {
@@ -183,11 +163,13 @@ const addToCart = () => {
             // Almacenamiento en localStorage
             localStorage.setItem("cart", JSON.stringify(cart))
 
+            // Animación del Badge de carrito
             cartBtn.classList.add("jump")
             setTimeout(() => {
                 cartBtn.classList.remove("jump");
             }, 1000);
 
+            // Notificación tipo "toast" mostrando el nombre del teléfono agregado
             Swal.fire({
                 position: "top-end",
                 text: `Se agregó ${phoneToAdd.name} al carrito`,
@@ -221,6 +203,7 @@ const displayCart = () => {
 // Función que actualiza el carrito (cuando se hace click en el ícono o en eliminar)
 
 const updateCart = () => {
+    const cartBody = document.getElementById("cart-body")
     // Reset del carrito para evitar duplicaciones
     cartBody.innerHTML = ""
     // Condicional para decidir qué información mostrar en el carrito
@@ -244,13 +227,14 @@ const updateCart = () => {
             `
             totalCost = totalCost + el.price * el.qty
         })
+        // innerHTML para agregar el total y el botón para ir al checkout SÓLO si hay teléfonos en el carrito
         cartBody.innerHTML += `
             <p class="total-cost">Precio final: $ ${totalCost}</p>
             <input id="checkout-btn" class="close-button checkout-btn" type="button" value="Ir a pagar" ></input>
         `
-        deleteItem()
+        deleteItem() // Agrega un listener de clicks al botón "Eliminar"
 
-        displayCheckoutList()
+        displayCheckoutList() // Agrega un listener de clicks al botón "Ir a pagar"
     }
 }
 
@@ -264,13 +248,13 @@ const deleteItem = () => {
     const deleteBtns = document.getElementsByClassName("delete-btn")
     const arrayDeleteBtns = Array.from(deleteBtns)
     
-    // Método forEach para cada botón del array
+    // Método forEach para cada botón del array  y listener de eventos "click"
     arrayDeleteBtns.forEach (el => {
-        // Evento click para cada botón del array
         el.addEventListener("click", e => {
             // Método find para determinar qué teléfono eliminar del carrito
             const phoneToDelete = cart.find((el) => el.name === e.target.parentElement.children[2].innerText)
 
+            // Condicional If para determinar si hay más de un teléfono de ese tipo agregado
             if (phoneToDelete.qty >= 2) {
                 phoneToDelete.qty--
             } else {
@@ -286,6 +270,7 @@ const deleteItem = () => {
             // Actualización del localStorage
             localStorage.setItem("cart", JSON.stringify(cart))
 
+            // Notificación tipo "toast" mostrando el nombre del teléfono eliminado
             Swal.fire({
                 position: "top-end",
                 text: `Se eliminó ${phoneToDelete.name} del carrito`,
@@ -320,17 +305,21 @@ const toggleVisibility = (elementsToShow, elementsToHide) => {
 
 const displayCheckoutList = () => {
     const checkoutBtn = document.getElementById("checkout-btn")
+    const purchaseList = document.getElementById("purchase-list")
     const subtotal = document.getElementById("subtotal")
 
+    // Listener de eventos "click" para el botón "Ir a pagar"
     checkoutBtn.addEventListener("click", () => {
         const checkoutPage = document.getElementById("checkout-page")
         const mainPage = document.getElementById("main-page")
 
+        // Llamado a función para ocultar la página principal y mostrar el checkout
         toggleVisibility([checkoutPage], [mainPage, toggleSearchIcon, cartModal])
 
+        // Reset de la lista de compras para evitar duplicaciones
         purchaseList.innerHTML = ""
-        totalCost = 0
 
+        // Método forEach para agregar cada teléfono a la lista de compras
         cart.forEach (el => {
             purchaseList.innerHTML += `
                 <div class="checkout-phone-container">
@@ -340,18 +329,9 @@ const displayCheckoutList = () => {
                     <p class="checkout-phone-price">$ ${el.price}</p>
                 </div>
             `
-            totalCost = totalCost + el.price * el.qty
         })
 
         subtotal.innerText = `Subtotal: $ ${totalCost}`
-
-        configCheckoutForm()
-
-        hideCheckoutList()
-
-        updateCheckoutCosts()
-
-        endPurchase()
     })
 }
 
@@ -382,6 +362,7 @@ const configCheckoutForm = () => {
     const detailsDisplayLabel = document.getElementById("details-display-label")
     const detailsDisplay = document.getElementById("details-display")
 
+    // Listener de cambios en la opción "efectivo" que actualiza labels e inputs
     optionCash.addEventListener("change", () => {
         if (optionCash.checked) {
             duesQty.disabled = true
@@ -392,6 +373,7 @@ const configCheckoutForm = () => {
         updateCheckoutCosts()
     })
 
+    // Listener de cambios en la opción "tarjeta" que actualiza labels e inputs
     optionCard.addEventListener("change", () => {
         if (optionCard.checked) {
             duesQty.disabled = false
@@ -403,6 +385,7 @@ const configCheckoutForm = () => {
         updateCheckoutCosts()
     })
 
+    // Listener de cambios en el select de cuotas que actualiza el valor de cada cuota
     duesQty.addEventListener("change", () => {
         if (optionCard.checked) {
             updateDuesAmount()
@@ -462,6 +445,45 @@ const cartBadgeTotalizer = () => {
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
+// Función que controla que todos los campos del checkout se hayan completado
+
+const validateForm = () => {
+    const checkoutName = document.getElementById("checkout-name")
+    const checkoutMail = document.getElementById("checkout-mail")
+    const optionCash = document.getElementById("option-cash")
+    const optionCard = document.getElementById("option-card")
+
+    if (checkoutName.value.trim() === "") {
+        Swal.fire({
+            text: "Ingrese su nombre para continuar con la compra",
+            background: "#f6f6f6",
+            confirmButtonColor: "#AE31BF",
+            icon: "error"
+        });
+        return false
+    } else if (checkoutMail.value.trim() === "") {
+        Swal.fire({
+            text: "Ingrese una dirección de correo electrónico para finalizar la compra",
+            background: "#f6f6f6",
+            confirmButtonColor: "#AE31BF",
+            icon: "error"
+        });
+        return false
+    } else if (!optionCard.checked && !optionCash.checked) {
+        Swal.fire({
+            text: "Seleccione un método de pago, por favor",
+            background: "#f6f6f6",
+            confirmButtonColor: "#AE31BF",
+            icon: "error"
+        });
+        return false
+    }
+    return true
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
 // Función que finaliza la compra
 
 const endPurchase = () => {
@@ -469,26 +491,29 @@ const endPurchase = () => {
     const checkoutName = document.getElementById("checkout-name")
     const mainPage = document.getElementById("main-page")
     const checkoutPage = document.getElementById("checkout-page")
-    // Evento click para el botón "terminar compra"
-    buyBtn.addEventListener ("click", (e) => {
 
-        e.preventDefault()
-
-        Swal.fire({
-            icon: "success",
-            title: `¡Muchas gracias por tu compra ${checkoutName.value}!`,
-            text: "A la brevedad nos estaremos contactando con vos",
-            background: "#f6f6f6",
-            confirmButtonColor: "#AE31BF",
-            footer: `Compraste ${cartBadgeTotalizer()} artículos`
-          });
-
-        // Método splice para vaciar el carrito 
-        cart.splice(0, cart.length)
-        // Limpieza del localStorage
-        localStorage.removeItem("cart")
-        // Actualización del ícono de carrito
-        cartQty.innerText = cart.length
+    // Listener de clicks para el botón "Terminar compra"
+    buyBtn.addEventListener ("click", () => {
+        // Condicional if: si algún campo no está completo termina la ejecución de la función
+        if (!validateForm()) {
+            return
+        } else {
+            Swal.fire({
+                icon: "success",
+                title: `¡Muchas gracias por tu compra ${checkoutName.value}!`,
+                text: "A la brevedad nos estaremos contactando con vos",
+                background: "#f6f6f6",
+                confirmButtonColor: "#AE31BF",
+                footer: `Compraste ${cartBadgeTotalizer()} artículos`
+            }).then (() => {
+                // Método splice para vaciar el carrito 
+                cart.splice(0, cart.length)
+                // Limpieza del localStorage
+                localStorage.removeItem("cart")
+                // Actualización del ícono de carrito
+                cartQty.innerText = cartBadgeTotalizer()
+            });
+        }
 
         toggleVisibility([mainPage, toggleSearchIcon],[checkoutPage])
     })    
@@ -515,9 +540,9 @@ const createCards = (phones) => {
         `
     })
 
-    displayInfo()
+    displayInfo() // Agrega listeners a los botones "+ info"
 
-    addToCart()
+    addToCart() // Agrega listeners a los botones "Agregar"
 }
 
 
@@ -529,8 +554,10 @@ const loadPromo = (promo) => {
     const headerPromoText = document.getElementById("header-promo-text")
     headerPromoText.innerText = promo.text
 
+    // Se almacena el descuento alojado en JSON en la variable discount
     discount = promo.discount
 
+    // Se configura el DOM según las cuotas alojadas en JSON
     const duesQty = document.getElementById("dues-qty")
     for (i = 2; i <= promo.dues; i++) {
         duesQty.innerHTML += `
@@ -574,7 +601,7 @@ const obtainJSONData = async () => {
             background: "#f6f6f6",
             confirmButtonColor: "#AE31BF",
             footer: `Error: ${error.message}`
-          });
+        });
     }
 }
 
@@ -637,6 +664,7 @@ const addSearchListener = (element, event) => {
 // Función que muestra y oculta el buscador de teléfonos
 
 const showAndHideSearcher = () => {
+    const phoneSearchDiv = document.getElementById("phone-search")
     toggleSearchIcon.addEventListener("click", () => {
         phoneSearchDiv.classList.toggle("show")
     })
@@ -693,6 +721,14 @@ showAndHideSearcher()
 
 toggleDarkMode()
 
+configCheckoutForm()
+
+hideCheckoutList()
+
+updateCheckoutCosts()
+
+endPurchase()
+
 
 /////////////////////////////////////////////////////////////////////////////////////////
 // Evento de carga del DOM
@@ -703,13 +739,13 @@ document.addEventListener("DOMContentLoaded", () => {
     cartQty.innerText = cartBadgeTotalizer()
 })
 
-// setTimeout(() => {
-//     timeOutCompleted = true
-//     hideSpinner()
-// }, 2000)
+setTimeout(() => {
+    timeOutCompleted = true
+    hideSpinner()
+}, 1000)
 
-// window.addEventListener("load", () => {
-//     pageLoaded = true
-//     hideSpinner()
-// })
+window.addEventListener("load", () => {
+    pageLoaded = true
+    hideSpinner()
+})
 

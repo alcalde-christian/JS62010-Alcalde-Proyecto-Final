@@ -55,6 +55,18 @@ header .header-buttons .dark-button:hover {
   cursor: pointer;
 }
 
+@media only screen and (max-width: 480px) {
+  header .header-container {
+    margin: 0;
+    border-radius: 0;
+  }
+  header .header-container .header-logo {
+    gap: 10px;
+  }
+  header .header-container .header-logo .logo {
+    width: 60px;
+  }
+}
 footer {
   height: 50px;
   text-align: center;
@@ -72,10 +84,14 @@ footer p {
   font-size: 12px;
 }
 
-footer.dark-mode {
-  background-color: #282828;
+@media only screen and (max-width: 480px) {
+  footer p {
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
 }
-
 body.dark-mode header {
   background-color: #282828;
 }
@@ -593,6 +609,85 @@ body main .checkout-page .checkout .checkout-payment form .checkout-buttons-cont
 }
 body main .checkout-page .checkout .checkout-payment form .checkout-buttons-container .submit:hover {
   background-color: #8b008b;
+}
+
+@media only screen and (max-width: 480px) {
+  body main .info-modal .info-container {
+    margin: 0;
+  }
+  body main .info-modal .info-container .info-header {
+    margin: 0 2%;
+    border-radius: 0;
+  }
+  body main .info-modal .info-container .info-body {
+    margin: 0 2%;
+  }
+  body main .info-modal .info-container .info-footer {
+    margin: 0 2%;
+    width: 96%;
+    border-radius: 0;
+  }
+  body main .cart-modal .cart-container {
+    margin: 0 2%;
+  }
+  body main .cart-modal .cart-container .cart-header {
+    border-radius: 0;
+  }
+  body main .cart-modal .cart-container .cart-body {
+    padding: 15px 5px;
+    border-radius: 0;
+  }
+  body main .cart-modal .cart-container .cart-body .cart-phone-container {
+    font-size: 0.8em;
+    justify-content: center;
+  }
+  body main .cart-modal .cart-container .cart-body .cart-phone-container img {
+    width: 50px;
+  }
+  body main .cart-modal .cart-container .cart-body .cart-phone-container .cart-phone-qty {
+    width: 35px;
+    padding: 0;
+    text-align: center;
+  }
+  body main .cart-modal .cart-container .cart-body .cart-phone-container p {
+    width: 80px;
+    padding: 0;
+  }
+  body main .cart-modal .cart-container .cart-body .cart-phone-container .delete-btn {
+    width: 100px;
+    margin: 0;
+    font-size: 0.9em;
+  }
+  body main .cart-modal .cart-container .cart-body input {
+    width: 40%;
+    margin: 0 30%;
+    padding: 5px;
+    font-size: 0.75em;
+  }
+  body main .cart-modal .cart-container .cart-body .total-cost {
+    padding: 25px 0;
+    text-align: center;
+    font-size: 1em;
+  }
+  body main .cart-modal .cart-container .cart-footer {
+    border-radius: 0;
+  }
+  body main .main-page .phone-search {
+    width: 100%;
+  }
+  body main .checkout-page .checkout .checkout-items .purchase-list .checkout-phone-container {
+    justify-content: center;
+    font-size: 0.9em;
+    margin: 15px 5px;
+    column-gap: 5px;
+  }
+  body main .checkout-page .checkout .checkout-payment form .checkout-buttons-container {
+    width: 100%;
+  }
+  body main .checkout-page .checkout .checkout-payment form .checkout-buttons-container .checkout-button {
+    text-align: center;
+    width: 100%;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */

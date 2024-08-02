@@ -19,6 +19,13 @@ footer {
     }
 }
 
-footer.dark-mode {
-    background-color: $back-color-dark;
+@media only screen and (max-width: 480px) {
+    footer {
+        p {
+            width: 100%;
+            margin: 0;
+            border-radius: 0;
+            box-shadow: none;
+        }
+    }
 }

@@ -449,3 +449,123 @@ body {
         }
     }
 }
+
+
+@media only screen and (max-width: 480px) {
+    body {
+        main {
+            .info-modal {
+                .info-container {
+                    margin: 0;
+
+                    .info-header {
+                        margin: 0 2%;
+                        border-radius: 0;
+                    }
+
+                    .info-body {
+                        margin: 0 2%;
+                    }
+
+                    .info-footer {
+                        margin: 0 2%;
+                        width: 96%;
+                        border-radius: 0;
+                    }
+                }
+            }
+
+            .cart-modal {
+                .cart-container {
+                    margin: 0 2%;
+
+                    .cart-header {
+                        border-radius: 0;
+                    }
+
+                    .cart-body {
+                        padding: 15px 5px;
+                        border-radius: 0;
+
+                        .cart-phone-container {
+                            font-size: 0.8em;
+                            justify-content: center;
+
+                            img {
+                                width: 50px;
+                            }
+
+                            .cart-phone-qty {
+                                width: 35px;
+                                padding: 0;
+                                text-align: center;
+                            }
+
+                            p {
+                                width: 80px;
+                                padding: 0;
+                            }
+
+                            .delete-btn {
+                                width: 100px;
+                                margin: 0;
+                                font-size: 0.9em;
+                            }
+                        }
+
+                        input {
+                            width: 40%;
+                            margin: 0 30%;
+                            padding: 5px;
+                            font-size: 0.75em;
+                        }
+    
+                        .total-cost {
+                            padding: 25px 0;
+                            text-align: center;
+                            font-size: 1em;
+                        }
+                    }
+
+                    .cart-footer {
+                        border-radius: 0;
+                    }
+                }
+            }
+
+            .main-page {
+                .phone-search {
+                    width: 100%;
+                }
+            }
+
+            .checkout-page {
+                .checkout {
+                    .checkout-items {
+                        .purchase-list {
+                            .checkout-phone-container {
+                                justify-content: center;
+                                font-size: 0.9em;
+                                margin: 15px 5px;
+                                column-gap: 5px;
+                            }
+                        }
+                    }
+
+                    .checkout-payment {
+                        form {
+                            .checkout-buttons-container {
+                                width: 100%;
+
+                                .checkout-button {
+                                    text-align: center;
+                                    width: 100%;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

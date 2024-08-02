@@ -1,5 +1,18 @@
 # E-Commerce de teléfonos celulares
 
-## ¡Bienvenidos a mi segunda pre-entrega del curso JavaScript de CoderHouse!
+## ¡Bienvenidos a mi entrega final del curso JavaScript de CoderHouse!
 
-En esta segunda etapa, mediante la manipulación del DOM, le permitiremos al usuario chequear las características básicas de los teléfonos listados y agregarlos a un carrito de compras. A su vez, podrán ser eliminados de forma individual, actualizándose la información de forma instantánea. Por último, se podrá finalizar la compra, vaciando el carrito y cualquier registro en memoria que se tenga del mismo.
+En esta etapa final del proyecto, el usuario podrá tanto visualizar información de cada uno de los teléfonos disponibles como también agregarlos al carrito, desde donde podrán eliminarse uno por uno los elementos agregados e ir a la página del checkout. Una vez allí, se podrá realizar una última mirada a la compra a efectuar, donde se deberán ingresar los datos personales y medio de pago, que se actualizará según la promoción disponible en ese momento.
+
+Características
+
+- Uso de .json como base de datos
+- localStorage para almacenar el carrito en caso del cierre de la ventana
+- Modo oscuro para todo el sitio
+- Buscador de teléfonos
+- Implementación de SweetAlert2 para modales emergentes
+- Clases
+- Objetos
+- Arrays
+- Métodos
+

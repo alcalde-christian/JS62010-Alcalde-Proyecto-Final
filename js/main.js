@@ -191,7 +191,7 @@ const addToCart = () => {
 
 const displayCart = () => {
     // Evento click para el botón de carrito
-    cartBtn.addEventListener("click", (e) => {
+    cartBtn.addEventListener("click", () => {
         updateCart()
         cartModal.style.display="block"
     })
@@ -559,7 +559,7 @@ const loadPromo = (promo) => {
 
     // Se configura el DOM según las cuotas alojadas en JSON
     const duesQty = document.getElementById("dues-qty")
-    for (i = 2; i <= promo.dues; i++) {
+    for (let i = 2; i <= promo.dues; i++) {
         duesQty.innerHTML += `
             <option value=${i}>${i} cuotas</option>
         `
